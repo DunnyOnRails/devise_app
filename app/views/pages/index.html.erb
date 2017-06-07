@@ -1,0 +1,8 @@
+<h1>Pages#index</h1>
+
+<%if user_signed_in?%>
+    <p> You are signed in</p>
+    <% controller.redirect_to pages_main_path %>
+<%else%>
+    <%controller.redirect_to open_pages_sign_up_path%>
+<% end %>

@@ -1,0 +1,7 @@
+<h1>You are in this page because you successfully signed in</h1>
+
+<%if user_signed_in?%>
+  <p> You are signed in</p>
+  <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+<%else%>
+<% end %>

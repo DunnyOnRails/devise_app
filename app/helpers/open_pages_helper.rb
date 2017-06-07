@@ -1,0 +1,2 @@
+module OpenPagesHelper
+end
