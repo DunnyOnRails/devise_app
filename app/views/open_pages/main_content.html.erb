@@ -1,16 +1,82 @@
 <%= render "header_nav"%>
 <!--=== Content Part ===-->
-<h1> Your content goes here</h1>
-<h1> Your content goes here</h1>
-<h1> Your content goes here</h1>
-<h1> Your content goes here</h1>
-<h1> Your content goes here</h1>
-<h1> Your content goes here</h1>
-<h1> Your content goes here</h1>
-<h1> Your content goes here</h1>
-<h1> Your content goes here</h1>
-<h1> Your content goes here</h1>
-<h1> Your content goes here</h1>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), :validate => true,  html: {class: 'form-horizontal'}) do |f| %>
+ <%= devise_error_messages! %>
+
+ <div class="col-sm-offset-2">
+   <h2> Sign Up</h2>
+ </div>
+
+<div class="form-group">
+    <%= f.label :email, class: "col-sm-2 control-label" %>
+  <div class="col-sm-8">
+      <%= f.email_field :email,class: "form-control", :validate => true, autofocus: false, :placeholder => "Email Address" %>
+  </div>
+</div>
+
+<div class="form-group">
+    <%= f.label :password, class: "col-sm-2 control-label" %>
+      <% if @minimum_password_length %>
+ <      em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %>
+    <div class="col-sm-8">
+        <%= f.password_field :password, class: "form-control", :validate => true, autocomplete: "off", :placeholder => "Password" %>
+    </div>
+ </div>
+
+<div class="form-group">
+  <%= f.label :password_confirmation, class: "col-sm-2 control-label" %>
+     <div class="col-sm-8">
+        <%= f.password_field :password_confirmation,class: "form-control", :validate => true, autocomplete: "off" , :placeholder => "Confirm Password"%>
+    </div>
+ </div>
+
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-8">
+     <%= f.submit "Sign up", class: "btn btn-primary" %>
+   </div>
+ </div>
+
+<% end %>
+
+<hr/>
+
+<div class="col-sm-offset-2">
+  <h2> Log in</h2>
+</div>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'form-horizontal'}) do |f| %>
+
+<div class="form-group">
+    <%= f.label :email, class: "col-sm-2 control-label" %>
+  <div class="col-sm-8">
+    <%= f.email_field :email, class: "form-control", autofocus: false, :placeholder => "Email Address" %>
+  </div>
+</div>
+
+  <div class="form-group">
+    <%= f.label :password, class: "col-sm-2 control-label" %>
+    <div class="col-sm-8">
+    <%= f.password_field :password, class: "form-control", autocomplete: "off", :placeholder => "Password" %>
+  </div>
+</div>
+
+
+<div class ="form-group">
+  <div>
+    <%= f.label :remember_me, class: "col-sm-2 control-label" %>
+    <%= f.check_box :remember_me%>
+    </div>
+</div>
+
+
+
+<div class="form-group">
+  <div class="col-sm-offset-2 col-sm-8">
+    <%= f.submit "Log in", class: "btn btn-primary" %>
+  </div>
+</div>
+  <% end -%>
 <!--=== End Content Part ===-->
 <%= render "footer"%>
 <%= render "style_switcher"%>
