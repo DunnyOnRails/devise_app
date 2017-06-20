@@ -1,4 +1,4 @@
-<h2>Sign up</h2>
+<h2>Sign up and in</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
@@ -15,6 +15,15 @@
     <% end %><br />
     <%= f.password_field :password, autocomplete: "off" %>
   </div>
+
+  <div class="input-group margin-bottom-20">
+	<%= f.label :password %>
+	<% if @minimum_password_length %>
+		<em>(<%= @minimum_password_length %> characters minimum)</em>
+	<% end %><br />
+	<span class="input-group-addon rounded-left"><i class="icon-lock color-white"></i></span>
+  	<%= f.password_field :password,:class=>'form-control rounded-right', :placeholder => 'Password', autocomplete: "off" %>
+</div>
 
   <div class="field">
     <%= f.label :password_confirmation %><br />

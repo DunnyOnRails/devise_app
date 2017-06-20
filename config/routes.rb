@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   get 'pages/index'
   root 'pages#index'
   get 'pages/main'
+  get 'open_pages/main'
+  get 'open_pages/main_content'
+
   get 'open_pages/sign_up'
   devise_for :users
 

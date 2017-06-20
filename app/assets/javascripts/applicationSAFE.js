@@ -10,3 +10,19 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery
+//= require jquery_ujs
+//= require bootstrap-sprockets
+//= require turbolinks
+//= require_tree .
+//= require_tree ../js
+//= require jquery/jquery.min.js
+//= require jquery/jquery-migrate.min.js
+//= require bootstrap/js/bootstrap.min.js
+//= require backstretch/jquery.backstretch.min.js
+//= require plugins/style-switcher.js
+//= require app.js
+//= require back-to-top.js
+//= require "spin"
+//= require "ladda"
+//= require "ladda.jquery"
