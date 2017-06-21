@@ -1,16 +1,9 @@
-<h1>Pages#main - which is secured by login</h1>
 <%if user_signed_in?%>
-<%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-<%=link_to to = button_to('Logout', destroy_user_session_path, :method => :delete)%>
-    <%= render "devise/shared/links" %>
-    <script>
-    $(document).ready(function(){
-        $("p").click(function(){
-            alert("The paragraph was clicked.");
-        });
-    });
-    </script>
-    <p>Click on this paragraph.</p>
-    <%else%>
+<%else%>
         <%controller.redirect_to open_pages_sign_up_path%>
-    <% end %>
+<% end %>
+
+<%= render "pages/shared/header_nav"%>
+<h2> Content Goes Here</h2>
+<%= render "pages/shared/footer"%>
+<%= render "pages/shared/style_switcher"%>

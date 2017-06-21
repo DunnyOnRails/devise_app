@@ -2,7 +2,6 @@
 	<div class="forms-wrapper">
 		<!--=== Header v6 ===-->
 		<div class="header-v6">
-							 <%= devise_error_messages! %>
 			<!-- Navbar -->
 			<div class="navbar mega-menu" role="navigation">
 				<div class="container">
@@ -807,8 +806,6 @@
 
 			<div class="row space-xlg-hor equal-height-columns">
 				<!--login Block-->
-				<%= form_for(resource, as: resource_name, url: session_path(resource_name))do |f| %>
-
 				<div class="form-block login-block col-md-6 col-sm-12 rounded-left equal-height-column">
 					<div class="form-block-header">
 						<h2 class="margin-bottom-15">Sign In</h2>
@@ -816,20 +813,19 @@
 
 					<div class="input-group margin-bottom-20">
 						<span class="input-group-addon rounded-left"><i class="icon-user color-white"></i></span>
-						<%= f.email_field :email, class: "form-control rounded-right", :placeholder => "Email Address" %>
+						<input type="text" class="form-control rounded-right" placeholder="Username">
 					</div>
 
 					<div class="input-group margin-bottom-20">
 						<span class="input-group-addon rounded-left"><i class="icon-lock color-white"></i></span>
-						 <%= f.password_field :password, class: "form-control rounded-rightl", :placeholder => "Password" %>
+						<input type="password" class="form-control rounded-right" placeholder="Password">
 					</div>
 
 					<div class="row margin-bottom-70">
 						<div class="col-md-12">
-							    <%= f.submit "Sign In", class: "btn-u btn-block rounded" %>
+							<button type="submit" class="btn-u btn-block rounded">Sign In</button>
 						</div>
 					</div>
-
 					<div class="social-login">
 						<div class="or rounded-x">Or</div>
 						<ul class="list-unstyled">
@@ -846,11 +842,9 @@
 						</ul>
 					</div>
 				</div>
-				<% end -%>
 				<!--End login Block-->
+
 				<!--Reg Block-->
-				<%= form_for(resource, as: resource_name, url: registration_path(resource_name), :validate => true,  html: {class: 'form-horizontal'}) do |f| %>
-				 <%= devise_error_messages! %>
 				<div class="form-block reg-block col-md-6 col-sm-12 rounded-right equal-height-column">
 					<div class="form-block-header">
 						<h2 class="margin-bottom-10">Sign Up</h2>
@@ -869,12 +863,12 @@
 
 					<div class="input-group margin-bottom-20">
 						<span class="input-group-addon rounded-left"><i class="icon-envelope"></i></span>
-						<%= f.email_field :email,class: "form-control rounded-right", :validate => true, autofocus: false, :placeholder => "Your email" %>
+						<input type="email" class="form-control rounded-right" placeholder="Your email">
 					</div>
 
 					<div class="input-group margin-bottom-20">
 						<span class="input-group-addon rounded-left"><i class="icon-lock"></i></span>
-						<%= f.password_field :password, class: "form-control rounded-right", :validate => true, autocomplete: "off", :placeholder => "Password" %>
+						<input type="password" class="form-control rounded-right" placeholder="Password">
 					</div>
 
 					<div class="checkbox margin-bottom-15">
@@ -891,11 +885,10 @@
 
 					<div class="row">
 						<div class="col-md-12">
-							<%= f.submit "Continue", class: "btn-u btn-block rounded" %>
+							<button type="submit" class="btn-u btn-block rounded">Continue</button>
 						</div>
 					</div>
 				</div>
-				<% end-%>
 				<!--End Reg Block-->
 			</div>
 		</div><!--/container-->
@@ -1116,7 +1109,7 @@
 		        duration: 7000
 		    });
   	</script>
-
+		
   	<!--[if lt IE 9]>
     <script src="assets/plugins/respond.js"></script>
     <script src="assets/plugins/html5shiv.js"></script>

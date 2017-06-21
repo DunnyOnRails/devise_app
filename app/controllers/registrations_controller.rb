@@ -1,6 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
 
-
+##ODD - I think this is only used now if JavaScript is switched off in the browser
  def create
    build_resource(sign_up_params)
 
