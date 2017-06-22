@@ -2,7 +2,6 @@
 	<div class="forms-wrapper">
 		<!--=== Header v6 ===-->
 		<div class="header-v6">
-							 <%= devise_error_messages! %>
 			<!-- Navbar -->
 			<div class="navbar mega-menu" role="navigation">
 				<div class="container">
@@ -808,7 +807,7 @@
 			<div class="row space-xlg-hor equal-height-columns">
 				<!--login Block-->
 				<%= form_for(resource, as: resource_name, url: session_path(resource_name))do |f| %>
-
+				<%= devise_error_messages! %>
 				<div class="form-block login-block col-md-6 col-sm-12 rounded-left equal-height-column">
 					<div class="form-block-header">
 						<h2 class="margin-bottom-15">Sign In</h2>
@@ -858,11 +857,6 @@
 					</div>
 
 					<div class="input-group margin-bottom-20">
-						<span class="input-group-addon rounded-left"><i class="icon-pencil"></i></span>
-						<input type="text" class="form-control rounded-right" placeholder="Your name">
-					</div>
-
-					<div class="input-group margin-bottom-20">
 						<span class="input-group-addon rounded-left"><i class="icon-user"></i></span>
 						<input type="text" class="form-control rounded-right" placeholder="Username">
 					</div>
@@ -876,6 +870,12 @@
 						<span class="input-group-addon rounded-left"><i class="icon-lock"></i></span>
 						<%= f.password_field :password, class: "form-control rounded-right", :validate => true, autocomplete: "off", :placeholder => "Password" %>
 					</div>
+
+					<div class="input-group margin-bottom-20">
+						<span class="input-group-addon rounded-left"><i class="icon-lock"></i></span>
+						<%= f.password_field :password_confirmation,class: "form-control rounded-right", :validate => true, autocomplete: "off" , :placeholder => "Confirm Password"%>
+					</div>
+
 
 					<div class="checkbox margin-bottom-15">
 						<label>

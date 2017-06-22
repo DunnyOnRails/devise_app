@@ -1,6 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
 
-##ODD - I think this is only used now if JavaScript is switched off in the browser
+
  def create
    build_resource(sign_up_params)
 
@@ -26,9 +26,9 @@ class RegistrationsController < Devise::RegistrationsController
 
 private
 def response_to_sign_up_failure(resource)
-  params.each do |key,value|
-    Rails.logger.warn "Param #{key}: #{value}"
-  end
+  #params.each do |key,value|
+  #  Rails.logger.warn "Param #{key}: #{value}"
+  #end
 
       ##Obsolete debug code - remove once documented.
       ##@resource_email = resource.email
@@ -38,10 +38,12 @@ def response_to_sign_up_failure(resource)
       ##Rails.logger.debug("My EMAIL object: #{@resource_email.inspect}")
       ##Rails.logger.debug("My PASSWORD object: #{@resource_password.inspect}")
       ##Rails.logger.debug("My CONFIRM_PASSWORD object: #{@resource_password_confirmation.inspect}")
-    if resource.email == "" && resource.password == nil
-    redirect_to root_path, alert: "Please fill in the form"
+    ##if resource.email == "" && resource.password == nil
+    if resource.email == "" 
+    redirect_to open_pages_sign_up_path, alert: "Please fill in the form"
   elsif User.pluck(:email).include? resource.email
-    redirect_to root_path, alert: "Email already exists"
+    Rails.logger.debug("I made it into the elseif clause")
+    redirect_to  open_pages_sign_up_path, alert: "Email already exists"
   end
 end
  end
