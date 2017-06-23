@@ -9,6 +9,9 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
+// DD - need to check how to get the JS properly loading in here since I am currently calling the JS from
+// within application.html. Had issues with paths and the JS not loading properly
+//
 //= require jquery
 //= require jquery_ujs
 //= require rails.validations

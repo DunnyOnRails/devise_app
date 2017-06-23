@@ -64,11 +64,7 @@
 
   </head>
 
-  <script>
-    setTimeout("$('.error_msgs').fadeOut('slow')", 6000)
-    setTimeout("$('.success_msgs').fadeOut('slow')", 3000)
-</script>
-
+  <!-- Display a dismissable notice to display important information -->
   <% if flash[:notice] %>
     <div class="alert alert-success alert-dismissible error_msgs" role="alert">
       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -76,13 +72,22 @@
     </div>
   <% end %>
 
-<% if flash[:alert] %>
-  <div class="alert alert-warning alert-dismissible error_msgs" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <strong>Warning! </strong><%= flash[:alert] %>
-  </div>
+  <!-- Display a dismissable warning to display errors -->
+  <% if flash[:alert] %>
+   <div class="alert alert-warning alert-dismissible error_msgs" role="alert">
+     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+     <strong>Warning! </strong><%= flash[:alert] %>
+   </div>
+
+  <!-- JS to fade out error messages and warnings a a period of time -->
+    <script>
+     setTimeout("$('.error_msgs').fadeOut('slow')", 6000)
+     setTimeout("$('.success_msgs').fadeOut('slow')", 3000)
+    </script>
+
 <% end %>
-    <%= yield %>
+<%= yield %>
+
   </body>
 
 </html>

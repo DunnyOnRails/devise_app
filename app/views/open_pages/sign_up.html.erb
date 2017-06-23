@@ -848,7 +848,7 @@
 				<% end -%>
 				<!--End login Block-->
 				<!--Reg Block-->
-				<%= form_for(resource, as: resource_name, url: registration_path(resource_name), :validate => true,  html: {class: 'form-horizontal'}) do |f| %>
+				<%= form_for(resource, as: resource_name, url: registration_path(resource_name), :validate => true, html: {class: 'form-horizontal'}) do |f| %>
 				 <%= devise_error_messages! %>
 				<div class="form-block reg-block col-md-6 col-sm-12 rounded-right equal-height-column">
 					<div class="form-block-header">
@@ -858,12 +858,12 @@
 
 					<div class="input-group margin-bottom-20">
 						<span class="input-group-addon rounded-left"><i class="icon-user"></i></span>
-						<input type="text" class="form-control rounded-right" placeholder="Username">
+						<%= f.text_field :username, class: "form-control rounded-right", autofocus: false, :placeholder => "Username", value:flash[:username] %>
 					</div>
 
 					<div class="input-group margin-bottom-20">
 						<span class="input-group-addon rounded-left"><i class="icon-envelope"></i></span>
-						<%= f.email_field :email,class: "form-control rounded-right", :validate => true, autofocus: false, :placeholder => "Your email" %>
+						<%= f.email_field :email,class: "form-control rounded-right", :validate => true, autofocus: false, :placeholder => "Email Address", value:flash[:email] %>
 					</div>
 
 					<div class="input-group margin-bottom-20">
@@ -880,11 +880,13 @@
 					<div class="checkbox margin-bottom-15">
 						<label>
 							<input type="checkbox">
+							<%= f.check_box :agreed_terms, {}, true %>
 							<p>I agree to terms &amp; conditions</p>
 						</label>
 
 						<label>
 							<input type="checkbox">
+							<%= f.check_box :agreed_subscribe, {}, true %>
 							<p>Subscribe to our newsletter</p>
 						</label>
 					</div>

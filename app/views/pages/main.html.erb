@@ -1,9 +1,8 @@
 <%if user_signed_in?%>
+    <%= render "pages/shared/header_nav"%>
+    <h2> Content Goes Here</h2>
+    <%= render "pages/shared/footer"%>
+    <%= render "pages/shared/style_switcher"%>
 <%else%>
-        <%controller.redirect_to open_pages_sign_up_path%>
+    <%controller.redirect_to open_pages_sign_up_path%>
 <% end %>
-
-<%= render "pages/shared/header_nav"%>
-<h2> Content Goes Here</h2>
-<%= render "pages/shared/footer"%>
-<%= render "pages/shared/style_switcher"%>
