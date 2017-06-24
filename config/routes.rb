@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'open_pages/main_content'
   get 'open_pages/jquerytest'
   get 'open_pages/sign_up'
+  get 'pages/profile'
 
   #devise_for :users
   devise_for :users, :controllers => {:registrations => "registrations"}
