@@ -23,7 +23,7 @@
             </ul>
           </li>
           <li class="topbar-devider"></li>
-          <li><a href="profile  "><%= current_user.username %></a></li>
+          <li><a href="profile"><%= current_user.username %></a></li>
           <li class="topbar-devider"></li>
           <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
         </ul>

@@ -1,12 +1,10 @@
 class PagesController < ApplicationController
 before_action :authenticate_user!
+
 # DD - methods required in order to set up routing so pages can be displayed.
   def index
-
   end
-
   def main
-
   end
   # DD - hese helper methods are required so we can use bespoke signin / signup forms rather than Devise views
   # I think these helper methods will be needed in each controller involved in a signup and redirect

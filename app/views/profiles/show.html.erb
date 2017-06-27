@@ -1,0 +1,391 @@
+<%= render 'profiles/shared/header_nav'%>
+<div class="container content profile">
+	<div class="row">
+<%= render 'profiles/shared/left_sidebar'%>
+<!-- Profile Container-->
+<!-- Profile Content -->
+<div class="col-md-9">
+	<div class="profile-body margin-bottom-20">
+		<div class="tab-v1">
+			<ul class="nav nav-justified nav-tabs">
+				<li class="active"><a data-toggle="tab" href="#profile" id="editprofile">Edit Profile</a></li>
+				<li><a data-toggle="tab" href="#passwordTab" id="changepassword">Change Password</a></li>
+				<li><a data-toggle="tab" href="#payment" id="paymentoptions">Payment Options</a></li>
+				<li><a data-toggle="tab" href="#settings" id"notificationsettings">Notification Settings</a></li>
+			</ul>
+			<div class="tab-content">
+				<div id="profile" class="profile-edit tab-pane fade in active">
+					<h2 class="heading-md">Manage your Name, ID and Email Addresses.</h2>
+					<p>Below are the name and email addresses on file for your account.</p>
+					<br>
+					<dl class="dl-horizontal">
+						<dt><strong>Edit your details </strong></dt>
+						<dd>
+							<span>
+								<a class="pull-right">
+									<i id="EditDetails"class="fa fa-pencil"></i>
+								</a>
+							</span>
+						</dd>
+						<hr>
+						<dt><strong>Your Name</strong></dt>
+						<dd>
+							<%=@profile.username%>
+						</dd>
+						<hr>
+						<dt><strong>Your ID </strong></dt>
+						<dd>
+							<%=@profile.id%>
+						</dd>
+						<hr>
+						<dt><strong>Company name </strong></dt>
+						<dd>
+							<%=@profile.company_name%>
+						</dd>
+						<hr>
+						<dt><strong>Primary Email Address </strong></dt>
+						<dd>
+							<%=@profile.main_email%>
+						</dd>
+						<hr>
+						<dt><strong>Phone Number </strong></dt>
+						<dd>
+							<%=@profile.main_phone%>
+						</dd>
+						<hr>
+						<dt><strong>Office Number </strong></dt>
+						<dd>
+							<%=@profile.office_phone%>
+						</dd>
+						<hr>
+						<dt><strong>Address </strong></dt>
+						<dd>
+							<%=@profile.one_line_address%>
+						</dd>
+						<hr>
+					</dl>
+				</div>
+
+					<div id="EditDetailsForm"class="profile-edit">
+						<h2 class="heading-md">Manage your Name, ID and Email Addresses.</h2>
+						<p>Below are the name and email addresses on file for your account.</p>
+						<br>
+<%= form_for(@profile, :html => {:class => 'sky-form'}) do |f| %>
+						<dl class="dl-horizontal">
+							<dt>Your name</dt>
+							<dd>
+								<section>
+									<label class="input">
+										<i class="icon-append fa fa-user"></i>
+										<%= f.text_field :username, :placeholder => "Username", :value => @profile.username%>
+										<b class="tooltip tooltip-bottom-right">Needed to display on the website</b>
+									</label>
+								</section>
+							</dd>
+							<dt>Company name</dt>
+							<dd>
+								<section>
+									<label class="input">
+										<i class="icon-append fa fa-building"></i>
+										<%= f.text_field :company_name, :placeholder => "Company", :value => @profile.company_name%>
+										<b class="tooltip tooltip-bottom-right">Needed to display on the websitee</b>
+									</label>
+								</section>
+							</dd>
+							<dt>Email address</dt>
+							<dd>
+								<section>
+									<label class="input">
+										<i class="icon-append fa fa-envelope"></i>
+										<%= f.email_field :main_email, :placeholder => "Email address", :value => @profile.main_email%>
+										<b class="tooltip tooltip-bottom-right">Needed to verify your account</b>
+									</label>
+								</section>
+							</dd>
+							<dt>Phone number</dt>
+							<dd>
+								<section>
+									<label class="input">
+										<i class="icon-append fa fa-phone"></i>
+										<%= f.text_field :main_phone, :placeholder => "Phone number", :value => @profile.main_phone%>
+										<b class="tooltip tooltip-bottom-right">Allows to get in touch with you</b>
+									</label>
+								</section>
+							</dd>
+						</dd>
+						<dt>Office number</dt>
+						<dd>
+							<section>
+								<label class="input">
+									<i class="icon-append fa fa-phone"></i>
+									<%= f.text_field :office_phone, :placeholder => "Office number", :value => @profile.office_phone%>
+									<b class="tooltip tooltip-bottom-right">Helps us to stay in touch</b>
+								</label>
+							</section>
+						</dd>
+							<dt>Address</dt>
+							<dd>
+								<section>
+									<label class="input">
+										<i class="icon-append fa fa-lock"></i>
+										<%= f.text_field :one_line_address, :placeholder => "Address", :value => @profile.one_line_address%>
+										<b class="tooltip tooltip-bottom-right">Helps us to stay in touch	</b>
+									</label>
+								</section>
+							</dd>
+						</dl>
+						<button type="button" class="btn-u btn-u-default" id="DisplayDetails">Cancel</button>
+						<%= f.submit "Save Changes", class: "btn-u" %>
+
+					</form>
+				</div>
+<%end%>
+				<div id="passwordTab" class="profile-edit tab-pane fade">
+					<h2 class="heading-md">Manage your Security Settings</h2>
+					<p>Change your password.</p>
+					<br>
+					<form class="sky-form" id="sky-form4" action="#">
+						<dl class="dl-horizontal">
+							<dt>Username</dt>
+							<dd>
+								<section>
+									<label class="input">
+										<i class="icon-append fa fa-user"></i>
+										<input type="text" placeholder="Username" name="username">
+										<b class="tooltip tooltip-bottom-right">Needed to enter the website</b>
+									</label>
+								</section>
+							</dd>
+							<dt>Email address</dt>
+							<dd>
+								<section>
+									<label class="input">
+										<i class="icon-append fa fa-envelope"></i>
+										<input type="email" placeholder="Email address" name="email">
+										<b class="tooltip tooltip-bottom-right">Needed to verify your account</b>
+									</label>
+								</section>
+							</dd>
+							<dt>Enter your password</dt>
+							<dd>
+								<section>
+									<label class="input">
+										<i class="icon-append fa fa-lock"></i>
+										<input type="password" id="password" name="password" placeholder="Password">
+										<b class="tooltip tooltip-bottom-right">Don't forget your password</b>
+									</label>
+								</section>
+							</dd>
+							<dt>Confirm Password</dt>
+							<dd>
+								<section>
+									<label class="input">
+										<i class="icon-append fa fa-lock"></i>
+										<input type="password" name="passwordConfirm" placeholder="Confirm password">
+										<b class="tooltip tooltip-bottom-right">Don't forget your password</b>
+									</label>
+								</section>
+							</dd>
+						</dl>
+						<label class="toggle toggle-change"><input type="checkbox" checked="" name="checkbox-toggle-1"><i class="no-rounded"></i>Remember password</label>
+						<br>
+						<section>
+							<label class="checkbox"><input type="checkbox" id="terms" name="terms"><i></i><a href="#">I agree with the Terms and Conditions</a></label>
+						</section>
+						<button type="button" class="btn-u btn-u-default">Cancel</button>
+						<button class="btn-u" type="submit">Save Changes</button>
+					</form>
+				</div>
+
+				<div id="payment" class="profile-edit tab-pane fade">
+					<h2 class="heading-md">Manage your Payment Settings</h2>
+					<p>Below are the payment options for your account.</p>
+					<br>
+					<form class="sky-form" id="sky-form" action="#">
+						<!--Checkout-Form-->
+						<section>
+							<div class="inline-group">
+								<label class="radio"><input type="radio" checked="" name="radio-inline"><i class="rounded-x"></i>Visa</label>
+								<label class="radio"><input type="radio" name="radio-inline"><i class="rounded-x"></i>MasterCard</label>
+								<label class="radio"><input type="radio" name="radio-inline"><i class="rounded-x"></i>PayPal</label>
+							</div>
+						</section>
+
+						<section>
+							<label class="input">
+								<input type="text" name="name" placeholder="Name on card">
+							</label>
+						</section>
+
+						<div class="row">
+							<section class="col col-10">
+								<label class="input">
+									<input type="text" name="card" id="card" placeholder="Card number">
+								</label>
+							</section>
+							<section class="col col-2">
+								<label class="input">
+									<input type="text" name="cvv" id="cvv" placeholder="CVV2">
+								</label>
+							</section>
+						</div>
+
+						<div class="row">
+							<label class="label col col-4">Expiration date</label>
+							<section class="col col-5">
+								<label class="select">
+									<select name="month">
+										<option disabled="" selected="" value="0">Month</option>
+										<option value="1">January</option>
+										<option value="1">February</option>
+										<option value="3">March</option>
+										<option value="4">April</option>
+										<option value="5">May</option>
+										<option value="6">June</option>
+										<option value="7">July</option>
+										<option value="8">August</option>
+										<option value="9">September</option>
+										<option value="10">October</option>
+										<option value="11">November</option>
+										<option value="12">December</option>
+									</select>
+									<i></i>
+								</label>
+							</section>
+							<section class="col col-3">
+								<label class="input">
+									<input type="text" placeholder="Year" id="year" name="year">
+								</label>
+							</section>
+						</div>
+						<button type="button" class="btn-u btn-u-default">Cancel</button>
+						<button class="btn-u" type="submit">Save Changes</button>
+						<!--End Checkout-Form-->
+					</form>
+				</div>
+
+				<div id="settings" class="profile-edit tab-pane fade">
+					<h2 class="heading-md">Manage your Notifications.</h2>
+					<p>Below are the notifications you may manage.</p>
+					<br>
+					<form class="sky-form" id="sky-form3" action="#">
+						<label class="toggle"><input type="checkbox" checked="" name="checkbox-toggle-1"><i class="no-rounded"></i>Email notification</label>
+						<hr>
+						<label class="toggle"><input type="checkbox" checked="" name="checkbox-toggle-1"><i class="no-rounded"></i>Send me email notification when a user comments on my blog</label>
+						<hr>
+						<label class="toggle"><input type="checkbox" checked="" name="checkbox-toggle-1"><i class="no-rounded"></i>Send me email notification for the latest update</label>
+						<hr>
+						<label class="toggle"><input type="checkbox" checked="" name="checkbox-toggle-1"><i class="no-rounded"></i>Send me email notification when a user sends me message</label>
+						<hr>
+						<label class="toggle"><input type="checkbox" checked="" name="checkbox-toggle-1"><i class="no-rounded"></i>Receive our monthly newsletter</label>
+						<hr>
+						<button type="button" class="btn-u btn-u-default">Reset</button>
+						<button class="btn-u" type="submit">Save Changes</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End Profile Content -->
+</div><!--/end row-->
+</div>
+<!--=== End Profile ===-->
+<%= render 'profiles/shared/footer'%>
+<%= render 'profiles/shared/style_switcher'%>
+
+<script type="text/javascript">
+jQuery(document).ready(function() {
+	App.init();
+	App.initScrollBar();
+	RegForm.initRegForm();
+	Datepicker.initDatepicker();
+	CheckoutForm.initCheckoutForm();
+	StyleSwitcher.initStyleSwitcher();
+		$('#EditDetailsForm').hide();
+});
+</script>
+<!--[if lt IE 9]>
+<script src="assets/plugins/respond.js"></script>
+<script src="assets/plugins/html5shiv.js"></script>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<script src="assets/plugins/sky-forms-pro/skyforms/js/sky-forms-ie8.js"></script>
+<![endif]-->
+
+<!--[if lt IE 10]>
+<script src="assets/plugins/sky-forms-pro/skyforms/js/jquery.placeholder.min.js"></script>
+<![endif]-->
+
+
+<script type="text/javascript">
+//set the initial state of variable
+			var EditDetailsState = 2;
+$(document).ready(function(){
+
+	$('#EditDetails').click(function() {
+		//set the state to indicate the edit details form should be shown
+			EditDetailsState = 1
+			alert (EditDetailsState);
+			alert("In edit details and setting state 1");
+// show the edit details form and hide the summary
+			$('#EditDetailsForm').show();
+			$('#profile ').hide();
+});
+
+	$('#DisplayDetails').click(function() {
+		//set the state to indicate the summary details  should be shown
+				EditDetailsState = 0
+				alert (EditDetailsState);
+				alert("In edit details and setting state 1");
+		// show the summary form and hide the edit details form
+				$('#EditDetailsForm').hide();
+				$('#profile ').show();
+		});
+
+	$('#changepassword').click(function() {
+					// this is the function I need to call
+				$('#EditDetailsForm').hide();
+				$('#profile ').hide();
+		});
+
+
+	$('#paymentoptions').click(function() {
+		// the payment options tab has been clicked so hide the edit details form
+		// also hide the summary details - can't be sure which is visible
+				$('#EditDetailsForm').hide();
+				$('#profile ').hide();
+});
+
+	$('#notificationsettings').click(function() {
+		// the notification settings tab has been clicked so hide the edit details form
+		// also hide the summary details - can't be sure which is visible
+				$('#EditDetailsForm').hide();
+				$('#profile ').hide();
+});
+
+	$('#editprofile').click(function() {
+		// the edit profile tab has been clicked so check the state to
+		//determine which one should be shown and which one should be hidden
+				alert(EditDetailsState);
+				if (EditDetailsState = 0)	{
+						$('#EditDetailsForm').hide();
+						$('#profile ').show();
+				}else if (EditDetailsState = 1) {
+					$('#EditDetailsForm').show();
+					$('#profile ').hide();
+				}
+				else {
+					$('#EditDetailsForm').hide();
+					$('#profile ').show();
+				}
+});
+
+});
+
+</script>
+
+<!--[if lt IE 9]>
+<script src="assets/plugins/respond.js"></script>
+<script src="assets/plugins/html5shiv.js"></script>
+<script src="assets/plugins/placeholder-IE-fixes.js"></script>
+<![endif]-->

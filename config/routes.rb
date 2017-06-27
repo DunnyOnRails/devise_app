@@ -8,6 +8,16 @@ Rails.application.routes.draw do
   get 'open_pages/jquerytest'
   get 'open_pages/sign_up'
   get 'pages/profile'
+  get 'profiles/profile'
+  get 'profiles/profile_details'
+  get 'profiles/profile_summary'
+  get 'profiles/profile_comments'
+  get 'profiles/profile_history'
+  get 'profiles/profile_settings'
+  get 'profiles/profile_users'
+  get 'profiles/profile_projects'
+
+  resources :profiles
 
   #devise_for :users
   devise_for :users, :controllers => {:registrations => "registrations"}
