@@ -10,4 +10,6 @@ class User < ApplicationRecord
     validates :email, :presence => true
     validates_confirmation_of :password
     validates :agreed_terms, :acceptance => true
+
+  has_one :profile
 end

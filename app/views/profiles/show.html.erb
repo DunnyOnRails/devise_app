@@ -30,7 +30,7 @@
 						<hr>
 						<dt><strong>Your Name</strong></dt>
 						<dd>
-							<%=@profile.username%>
+							<%=@profile.name%>
 						</dd>
 						<hr>
 						<dt><strong>Your ID </strong></dt>
@@ -77,7 +77,7 @@
 								<section>
 									<label class="input">
 										<i class="icon-append fa fa-user"></i>
-										<%= f.text_field :username, :placeholder => "Username", :value => @profile.username%>
+										<%= f.text_field :name, :placeholder => "Name", :value => @profile.name%>
 										<b class="tooltip tooltip-bottom-right">Needed to display on the website</b>
 									</label>
 								</section>
@@ -336,7 +336,7 @@ $(document).ready(function(){
 		//set the state to indicate the summary details  should be shown
 				EditDetailsState = 0
 				alert (EditDetailsState);
-				alert("In edit details and setting state 1");
+				alert("In display details and setting state 0");
 		// show the summary form and hide the edit details form
 				$('#EditDetailsForm').hide();
 				$('#profile ').show();
@@ -367,6 +367,7 @@ $(document).ready(function(){
 		// the edit profile tab has been clicked so check the state to
 		//determine which one should be shown and which one should be hidden
 				alert(EditDetailsState);
+				alert("I am in the edit profile function");
 				if (EditDetailsState = 0)	{
 						$('#EditDetailsForm').hide();
 						$('#profile ').show();

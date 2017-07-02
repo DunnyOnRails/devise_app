@@ -6,11 +6,17 @@ class RegistrationsController < Devise::RegistrationsController
   def sign_up_params
     params.require(:user).permit(:username, :email, :password, :password_confirmation, :agreed_terms, :agreed_subscribe)
   end
+
 # DD this code block is overriding the standard Devise 'create' method. If sign in fails it calls the
 # response_to_sign_up_failure below
  def create
    build_resource(sign_up_params)
    resource.save
+# Next 3 lines write the new username into the profiles table
+   @profile = Profile.new
+   @profile.username = resource.username
+   @profile.save
+
    yield resource if block_given?
   if resource.persisted?
     if resource.active_for_authentication?

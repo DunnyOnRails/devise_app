@@ -1,10 +1,7 @@
 class OpenPagesController < ApplicationController
   def sign_up
   end
-  def jquerytest
-  end
-
-  def main_content
+  def main
   end
   # These helper methods are required so we can use bespoke signin / signup forms rather than Devise views
 # One of these would be needed in each controller if supporting signup forms /functionality in different subdirectories of the site.

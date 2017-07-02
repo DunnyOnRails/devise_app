@@ -1,32 +1,37 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
-
-
-def profile
-end
-  # GET /profiles
-  # GET /profiles.json
-  def index
-    @profiles = Profile.all
+  def profile_comments
   end
 
-  # GET /profiles/1
-  # GET /profiles/1.json
+  def profile_history
+  end
+
+  def profile_projects
+  end
+
+  def profile_settings
+  end
+
+  def profile_summary
+    #Populate the @profile instance variable using username
+    @profile = Profile.find_by_username(current_user.username)
+  end
+
+  def profile_details
+    #Populate the @profile instance variable using username
+    @profile = Profile.find_by_username(current_user.username)
+  end
+
   def show
+    # ensure the logged in user can only access their own profile url (profiles/:id)
+    @profile = Profile.find_by_username(current_user.username)
+    if @profile.id.to_s != params[:id] then
+      redirect_back(fallback_location:profiles_profile_summary_path, notice: "This action is not alowed; you can only view the details that belong to you.")
+    end
   end
 
-  # GET /profiles/new
-  def new
-    @profile = Profile.new
-  end
-
-  # GET /profiles/1/edit
-  def edit
-  end
-
-  # POST /profiles
-  # POST /profiles.json
   def create
     @profile = Profile.new(profile_params)
 
@@ -74,6 +79,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_params
-      params.require(:profile).permit(:username,:company_name, :main_email, :main_phone, :office_phone, :one_line_address)
+      params.require(:profile).permit(:name,:username,:company_name, :main_email, :main_phone, :office_phone, :one_line_address)
     end
 end
