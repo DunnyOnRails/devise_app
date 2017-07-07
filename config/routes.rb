@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get 'profiles/profile_settings'
   get 'profiles/profile_users'
   get 'profiles/profile_projects'
+  post 'update_password' => 'profiles#update_password'
+  get 'open_pages/testit'
 
   resources :profiles
 
@@ -20,4 +22,10 @@ Rails.application.routes.draw do
 #devise_for :users, :path => '', :path_names => { :sign_in => "open_pages/index" }
 
   # For detls on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  #resource :user, only: [:edit] do
+  #collection do
+  #  patch 'update_password'
+#  end
+# end
 end

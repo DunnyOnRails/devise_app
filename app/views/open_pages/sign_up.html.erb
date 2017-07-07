@@ -820,7 +820,14 @@
 
 					<div class="input-group margin-bottom-20">
 						<span class="input-group-addon rounded-left"><i class="icon-lock color-white"></i></span>
-						 <%= f.password_field :password, class: "form-control rounded-rightl", :placeholder => "Password" %>
+						 <%= f.password_field :password, class: "form-control rounded-right", :placeholder => "Password" %>
+					</div>
+
+					<div class="checkbox margin-bottom-15">
+						<label>
+							<input type="checkbox">
+							<%= f.check_box :remember_me %> <%= f.label :remember_me%>
+						</label>
 					</div>
 
 					<div class="row margin-bottom-70">

@@ -1,14 +1,14 @@
 var CheckoutForm = function () {
 
     return {
-        
+
         //Checkout Form
         initCheckoutForm: function () {
 	        // Masking
 	        $('#cvv').mask('999', {placeholder:'X'});
 	        $('#card').mask('9999-9999-9999-9999', {placeholder:'X'});
 	        $('#year').mask('2099', {placeholder:'X'});
-	        
+
 	        // Add validation method
 	        $.validator.addMethod("creditcard", function(value, element, param) {
 	            if( /[^0-9\-]+/.test(value) )
@@ -16,8 +16,8 @@ var CheckoutForm = function () {
 	                return false;
 	            }
 	        },
-	        $.validator.format('Please enter a valid credit card number.'));
-	        
+	        $.validator.format('Please enter a valid credit card numberzzzz.'));
+
 	        // Validation
 	        $('#sky-form').validate({
 	            // Rules for form validation
@@ -81,7 +81,7 @@ var CheckoutForm = function () {
 	                    digits: true
 	                }
 	            },
-	                                
+
 	            // Messages for form validation
 	            messages:
 	            {
@@ -141,8 +141,8 @@ var CheckoutForm = function () {
 	                    required: 'Enter year',
 	                    digits: 'Digits only please'
 	                }
-	            },                  
-	            
+	            },
+
 	            // Do not change code below
 	            errorPlacement: function(error, element)
 	            {

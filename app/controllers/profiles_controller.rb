@@ -2,6 +2,23 @@ class ProfilesController < ApplicationController
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
+  def update_password
+    # update the changed user details, in this isnatance the password
+    @user = User.find(current_user.id)
+    if @user.update(user_params)
+      # Sign in the user by passing validation as Devise tries to login again if password changed and this causes an errot
+      bypass_sign_in(@user)
+      redirect_to root_path
+    else
+      #DD - if the record cant be saved for some reason then reload page with an error message
+      # not ideal as user input is lost but not sure how else to do this at the moment.
+      @profile = Profile.find_by_username(current_user.username)
+      @myvar = '/profiles/'
+      @myvar = (@myvar + @profile.id.to_s)
+      redirect_to @myvar, :alert => "An error has occurred - please check all details entered and try again"
+      end
+  end
+
   def profile_comments
   end
 
@@ -81,4 +98,41 @@ class ProfilesController < ApplicationController
     def profile_params
       params.require(:profile).permit(:name,:username,:company_name, :main_email, :main_phone, :office_phone, :one_line_address)
     end
+
+    # DD - these helper methods are required so we can use bespoke signin / signup forms rather than Devise views
+    # I think these helper methods will be needed in each controller involved in a signup and redirect
+    private
+
+    def resource_name
+      :user
+    end
+    helper_method :resource_name
+
+    def resource
+      @resource ||= User.new
+    end
+    helper_method :resource
+
+    def devise_mapping
+      @devise_mapping ||= Devise.mappings[:user]
+    end
+    helper_method :devise_mapping
+
+    def resource_class
+      User
+    end
+    helper_method :resource_class
+
+
+  def edit
+    @user = current_user
+  end
+
+
+  private
+
+  def user_params
+    # NOTE: Using `strong_parameters` gem
+    params.require(:user).permit(:password, :password_confirmation, :agreed_terms, :agreed_subscribe)
+  end
 end
