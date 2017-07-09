@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  allow_emailmsg: false
+  allow_smsmsg: false
+  allow_socialmsg: false
+  allow_webmsg: false
+  allow_post: false
+
+two:
+  allow_emailmsg: false
+  allow_smsmsg: false
+  allow_socialmsg: false
+  allow_webmsg: false
+  allow_post: false

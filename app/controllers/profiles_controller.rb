@@ -3,18 +3,19 @@ class ProfilesController < ApplicationController
   before_action :authenticate_user!
 
   def update_password
-    # update the changed user details, in this isnatance the password
+# DD -  update the changed user details, in this instance the password
     @user = User.find(current_user.id)
     if @user.update(user_params)
-      # Sign in the user by passing validation as Devise tries to login again if password changed and this causes an errot
+# DD - Sign in the user by passing validation as Devise tries to login again if password changed and this causes an error
+# DD - then redirect to profiles/:id
       bypass_sign_in(@user)
-      redirect_to root_path
+      @myvar = ('/profiles/' + current_user.id.to_s)
+      redirect_to @myvar, notice: 'Password was successfully updated.'
     else
-      #DD - if the record cant be saved for some reason then reload page with an error message
-      # not ideal as user input is lost but not sure how else to do this at the moment.
-      @profile = Profile.find_by_username(current_user.username)
-      @myvar = '/profiles/'
-      @myvar = (@myvar + @profile.id.to_s)
+# DD - if the record cant be saved for some reason then reload page with an error message
+# DD - not ideal as user input is lost but not sure how else to do this at the moment.
+      @profile = Profile.find_by_user_id(current_user.id)
+      @myvar = ('/profiles/' + current_user.id.to_s)
       redirect_to @myvar, :alert => "An error has occurred - please check all details entered and try again"
       end
   end
@@ -32,39 +33,58 @@ class ProfilesController < ApplicationController
   end
 
   def profile_summary
-    #Populate the @profile instance variable using username
-    @profile = Profile.find_by_username(current_user.username)
+# DD - Populate the @profile instance variable using username
+    @profile = Profile.find_by_user_id(current_user.id)
   end
 
   def profile_details
-    #Populate the @profile instance variable using username
-    @profile = Profile.find_by_username(current_user.username)
+# DD - Populate the @profile instance variable using username
+    @profile = Profile.find_by_user_id(current_user.id)
   end
 
   def show
-    # ensure the logged in user can only access their own profile url (profiles/:id)
-    @profile = Profile.find_by_username(current_user.username)
+# DD - ensure the logged in user can only access their own profile url (profiles/:id)
+    @profile = Profile.find_by_user_id(current_user.id)
     if @profile.id.to_s != params[:id] then
-      redirect_back(fallback_location:profiles_profile_summary_path, notice: "This action is not alowed; you can only view the details that belong to you.")
+      redirect_back(fallback_location:profiles_profile_summary_path, notice: "This action is not allowed; you can only view the details that belong to you.")
     end
+# DD - Instantiate @notification instance variable  by trying to load record for current user
+    @notification = Notification.find_by_user_id(current_user.id)
+# DD - If there is isnt  a current notifications record create an empty instance of the object
+    if @notification.nil?
+      @notification = Notification.new
+    else
+# DD - Otherwise load object with notifications record for current user
+    @notification = Notification.find_by_user_id(current_user.id)
+  end
   end
 
-  def create
-    @profile = Profile.new(profile_params)
+def edit
+  @user = current_user
+end
 
-    respond_to do |format|
-      if @profile.save
-        format.html { redirect_to @profile, notice: 'Profile was successfully created.' }
-        format.json { render :show, status: :created, location: @profile }
-      else
-        format.html { render :new }
-        format.json { render json: @profile.errors, status: :unprocessable_entity }
-      end
-    end
+  def create_update_notifications
+# DD - This method is called from show.html and creates a new notifications record
+# DD - if one doesnt already exist; if one does exist it updates it
+# DD - in both cases it sete the redirect correctly to pofiles/:id
+
+          @notification = Notification.find_by_user_id(current_user.id)
+
+          if @notification.nil?
+            @notification = Notification.new
+            @notification.update(notification_params)
+            @myvar = ('/profiles/' + current_user.id.to_s)
+            redirect_to @myvar, notice: 'Notifications were successfully created.'
+          else
+            @notification = Notification.find_by_user_id(current_user.id)
+            @notification.update(notification_params)
+            @myvar = ('/profiles/' + current_user.id.to_s)
+            redirect_to @myvar, notice: 'Notifications were successfully updated.'
+
+            end
   end
 
-  # PATCH/PUT /profiles/1
-  # PATCH/PUT /profiles/1.json
+# DD - Update an existing profile - it will always be there as it ic created when the user is created (but is empty)
   def update
     respond_to do |format|
       if @profile.update(profile_params)
@@ -77,8 +97,7 @@ class ProfilesController < ApplicationController
     end
   end
 
-  # DELETE /profiles/1
-  # DELETE /profiles/1.json
+# DD - not currently used as I dont allow profiles to be deleted
   def destroy
     @profile.destroy
     respond_to do |format|
@@ -91,12 +110,16 @@ class ProfilesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_profile
       @profile = Profile.find(params[:id])
-
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_params
       params.require(:profile).permit(:name,:username,:company_name, :main_email, :main_phone, :office_phone, :one_line_address)
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def notification_params
+      params.require(:notification).permit(:user_id, :allow_emailmsg,:allow_smsmsg,:allow_socialmsg, :allow_webmsg, :allow_post)
     end
 
     # DD - these helper methods are required so we can use bespoke signin / signup forms rather than Devise views
@@ -122,11 +145,6 @@ class ProfilesController < ApplicationController
       User
     end
     helper_method :resource_class
-
-
-  def edit
-    @user = current_user
-  end
 
 
   private

@@ -10,13 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170701102302) do
+ActiveRecord::Schema.define(version: 20170708202941) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "notifications", force: :cascade do |t|
+    t.boolean  "allow_emailmsg"
+    t.boolean  "allow_smsmsg"
+    t.boolean  "allow_socialmsg"
+    t.boolean  "allow_webmsg"
+    t.boolean  "allow_post"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "user_id"
+  end
+
   create_table "profiles", force: :cascade do |t|
-    t.string   "username"
+    t.string   "user_id"
     t.string   "user_image"
     t.string   "company_name"
     t.string   "main_email"

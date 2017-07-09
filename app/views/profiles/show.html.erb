@@ -15,8 +15,8 @@
 			</ul>
 			<div class="tab-content">
 				<div id="profile" class="profile-edit tab-pane fade in active">
-					<h2 class="heading-md">Manage your Name, ID and Email Addresses.</h2>
-					<p>Below are the name and email addresses on file for your account.</p>
+					<h2 class="heading-md">Manage your Contact Details.</h2>
+					<p>Below are the contact details we have on file for your account.</p>
 					<br>
 					<dl class="dl-horizontal">
 						<dt><strong>Edit your details </strong></dt>
@@ -67,8 +67,8 @@
 				</div>
 
 					<div id="EditDetailsForm" class="profile-edit">
-						<h2 class="heading-md">Manage your Name, ID and Email Addresses.</h2>
-						<p>Below are the name and email addresses on file for your account.</p>
+						<h2 class="heading-md">Manage your Contact Details.</h2>
+						<p>Below are the contact details we have on file for your account.</p>
 						<br>
 <%= form_for(@profile, :html => {:class => 'sky-form'}) do |f| %>
 						<dl class="dl-horizontal">
@@ -246,23 +246,25 @@
 				</div>
 
 				<div id="settings" class="profile-edit tab-pane fade">
-					<h2 class="heading-md">Manage your Notifications.</h2>
-					<p>Below are the notifications you may manage.</p>
+					<h2 class="heading-md">Manage your communication preferences.</h2>
+					<p>I am happy to receive communications by:- </p>
 					<br>
-					<form class="sky-form" id="sky-form3" action="#">
-						<label class="toggle"><input type="checkbox" checked="" name="checkbox-toggle-1"><i class="no-rounded"></i>Email notification</label>
+	<%= form_for(@notification, :html => {:class => 'sky-form'}, :url => { :action => "create_update_notifications" } ) do |f| %>
+
+						<%= f.hidden_field :user_id, :value => current_user.id %>
+						<label class="toggle"><%= f.check_box :allow_emailmsg , {}, true %><i class="no-rounded"><a href="#"></i>Subscribe to our newsletter?</a></label>
 						<hr>
-						<label class="toggle"><input type="checkbox" checked="" name="checkbox-toggle-1"><i class="no-rounded"></i>Send me email notification when a user comments on my blog</label>
+						<label class="toggle"><%= f.check_box :allow_smsmsg , {}, true%><i class="no-rounded"><a href="#"></i>Text message to the mobile number on my account</a></label>
 						<hr>
-						<label class="toggle"><input type="checkbox" checked="" name="checkbox-toggle-1"><i class="no-rounded"></i>Send me email notification for the latest update</label>
+						<label class="toggle"><%= f.check_box :allow_socialmsg , {}, true %><i class="no-rounded"><a href="#"></i>Social media account</a></label>
 						<hr>
-						<label class="toggle"><input type="checkbox" checked="" name="checkbox-toggle-1"><i class="no-rounded"></i>Send me email notification when a user sends me message</label>
+						<label class="toggle"><%= f.check_box :allow_webmsg , {}, true %><i class="no-rounded"><a href="#"></i>Message notification on this website</a></label>
 						<hr>
-						<label class="toggle"><input type="checkbox" checked="" name="checkbox-toggle-1"><i class="no-rounded"></i>Receive our monthly newsletter</label>
+						<label class="toggle"><%= f.check_box :allow_post , {}, true %><i class="no-rounded"><a href="#"></i>Post to my home address</a></label>
 						<hr>
-						<button type="button" class="btn-u btn-u-default">Reset</button>
-						<button class="btn-u" type="submit">Save Changes</button>
-					</form>
+						<button type="button" class="btn-u btn-u-default">Cancel</button>
+						<%= f.submit "Save Changes", class: "btn-u" %>
+<%end%>
 					</div>
 			</div>
 		</div>
