@@ -3,9 +3,8 @@ class ApplicationController < ActionController::Base
   def index
   end
 
-# DD - added this so I can control which page a use goes to after signing in.
+# DD - added this so I can control which page a user goes to after signing in.
   def after_sign_in_path_for(resource)
-    pages_main_path
+    pages_main_path 
   end
-
 end

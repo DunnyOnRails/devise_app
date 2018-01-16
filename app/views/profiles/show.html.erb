@@ -33,6 +33,11 @@
 							<%=@profile.name%>
 						</dd>
 						<hr>
+						<dt><strong>Your Chat Handle</strong></dt>
+						<dd>
+							<%=@profile.handle%>
+						</dd>
+						<hr>
 						<dt><strong>Your ID </strong></dt>
 						<dd>
 							<%=@profile.id%>
@@ -62,7 +67,6 @@
 						<dd>
 							<%=@profile.one_line_address%>
 						</dd>
-						<hr>
 					</dl>
 				</div>
 
@@ -70,7 +74,8 @@
 						<h2 class="heading-md">Manage your Contact Details.</h2>
 						<p>Below are the contact details we have on file for your account.</p>
 						<br>
-<%= form_for(@profile, :html => {:class => 'sky-form'}) do |f| %>
+					
+<%= form_for(@profile, html: { multipart: true, :class => 'sky-form'}) do |f| %>
 						<dl class="dl-horizontal">
 							<dt>Your name</dt>
 							<dd>
@@ -82,13 +87,23 @@
 									</label>
 								</section>
 							</dd>
+							<dt>Your chat handle</dt>
+							<dd>
+								<section>
+									<label class="input">
+										<i class="icon-append fa fa-user"></i>
+										<%= f.text_field :handle, :placeholder => "Chat handle", :value => @profile.handle%>
+										<b class="tooltip tooltip-bottom-right">Needed to take part in chat</b>
+									</label>
+								</section>
+							</dd>
 							<dt>Company name</dt>
 							<dd>
 								<section>
 									<label class="input">
 										<i class="icon-append fa fa-building"></i>
 										<%= f.text_field :company_name, :placeholder => "Company", :value => @profile.company_name%>
-										<b class="tooltip tooltip-bottom-right">Needed to display on the websitee</b>
+										<b class="tooltip tooltip-bottom-right">Needed to display on the website</b>
 									</label>
 								</section>
 							</dd>
@@ -133,8 +148,18 @@
 									</label>
 								</section>
 							</dd>
+							<dt>Please add a picture.</dt>
+							<dd>
+								<section>
+									<label class="btn btn-default">
+									<span class="glyphicon glyphicon-folder-open"></span>
+										 Upload Image<%= f.file_field :avatar, class: "hidden"%>
+									</label>
+								</section>
+
+							</dd>
 						</dl>
-						<button type="button" class="btn-u btn-u-default" id="DisplayDetails">Cancel</button>
+						<a class="btn-u btn-u-default" href="/profiles/<%=@profile.id%>">Cancel</a>
 						<%= f.submit "Save Changes", class: "btn-u" %>
 			<%end%>
 				</div>
@@ -173,7 +198,7 @@
 						<section>
 							<label class="checkbox"><%= f.check_box :agreed_subscribe , {}, true %><i></i><a href="#">Subscribe to our newsletter?</a></label>
 						</section>
-						<button type="button" class="btn-u btn-u-default">Cancel</button>
+						<a class="btn-u btn-u-default" href="/profiles/<%=@profile.id%>">Cancel</a>
 						<%= f.submit "Save Changes", class: "btn-u" %>
   		<%end%>
 				</div>
@@ -239,7 +264,7 @@
 								</label>
 							</section>
 						</div>
-						<button type="button" class="btn-u btn-u-default">Cancel</button>
+						<a class="btn-u btn-u-default" href="/profiles/<%=@profile.id%>">Cancel</a>
 						<button class="btn-u" type="submit">Save Changes</button>
 						<!--End Checkout-Form-->
 					</form>
@@ -252,7 +277,7 @@
 	<%= form_for(@notification, :html => {:class => 'sky-form'}, :url => { :action => "create_update_notifications" } ) do |f| %>
 
 						<%= f.hidden_field :user_id, :value => current_user.id %>
-						<label class="toggle"><%= f.check_box :allow_emailmsg , {}, true %><i class="no-rounded"><a href="#"></i>Subscribe to our newsletter?</a></label>
+						<label class="toggle"><%= f.check_box :allow_emailmsg , {}, true %><i class="no-rounded"><a href="#"></i>Subscribing to our email newsletter</a></label>
 						<hr>
 						<label class="toggle"><%= f.check_box :allow_smsmsg , {}, true%><i class="no-rounded"><a href="#"></i>Text message to the mobile number on my account</a></label>
 						<hr>
@@ -262,7 +287,7 @@
 						<hr>
 						<label class="toggle"><%= f.check_box :allow_post , {}, true %><i class="no-rounded"><a href="#"></i>Post to my home address</a></label>
 						<hr>
-						<button type="button" class="btn-u btn-u-default">Cancel</button>
+						<a class="btn-u btn-u-default" href="/profiles/<%=@profile.id%>">Cancel</a>
 						<%= f.submit "Save Changes", class: "btn-u" %>
 <%end%>
 					</div>

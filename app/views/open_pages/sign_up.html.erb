@@ -1,3 +1,4 @@
+<% setBreadcrumb("Testing","sitePage", "Testing Pages","Test it")%>
 	<!--=== Content Part ===-->
 	<div class="forms-wrapper">
 		<!--=== Header v6 ===-->
@@ -807,13 +808,13 @@
 			<div class="row space-xlg-hor equal-height-columns">
 				<!--login Block-->
 				<%= form_for(resource, as: resource_name, url: session_path(resource_name))do |f| %>
-				<%= devise_error_messages! %>
-				<div class="form-block login-block col-md-6 col-sm-12 rounded-left equal-height-column">
+				<%# <%= devise_error_messages! %> 
+				<div class="form-block login-block em-error col-md-6 col-sm-12 rounded-left equal-height-column">
 					<div class="form-block-header">
 						<h2 class="margin-bottom-15">Sign In</h2>
 					</div>
 
-					<div class="input-group margin-bottom-20">
+					<div class="input-group  margin-bottom-20">
 						<span class="input-group-addon rounded-left"><i class="icon-user color-white"></i></span>
 						<%= f.email_field :email, class: "form-control rounded-right", :placeholder => "Email Address" %>
 					</div>
@@ -825,8 +826,8 @@
 
 					<div class="checkbox margin-bottom-15">
 						<label>
-							<input type="checkbox">
-							<%= f.check_box :remember_me %> <%= f.label :remember_me%>
+							<%# <input type="checkbox" name="remember_me"> %>
+							<%= f.check_box :remember_me %> <%= f.label :remember_me, class: "remember_me"%>
 						</label>
 					</div>
 
@@ -852,52 +853,48 @@
 						</ul>
 					</div>
 				</div>
-				<% end -%>
+				<% end %>
 				<!--End login Block-->
 				<!--Reg Block-->
-				<%= form_for(resource, as: resource_name, url: registration_path(resource_name), :validate => true, html: {class: 'form-horizontal'}) do |f| %>
+				<%= form_for(resource, as: resource_name, url: registration_path(resource_name),  html: {class: 'form-horizontal'}) do |f| %>
 				 <%= devise_error_messages! %>
-				<div class="form-block reg-block col-md-6 col-sm-12 rounded-right equal-height-column">
+				<div class="form-block reg-block em-error col-md-6 col-sm-12 rounded-right equal-height-column">
 					<div class="form-block-header">
 						<h2 class="margin-bottom-10">Sign Up</h2>
 						<p class="margin-bottom-20">Lorem ipsum dolor sit amet, conur sicing elit, seddoet dolore magna. aliqua.</p>
 					</div>
-
 					<div class="input-group margin-bottom-20">
 						<span class="input-group-addon rounded-left"><i class="icon-user"></i></span>
 						<%= f.text_field :username, class: "form-control rounded-right", autofocus: false, :placeholder => "Username", value:flash[:username] %>
 					</div>
-
 					<div class="input-group margin-bottom-20">
 						<span class="input-group-addon rounded-left"><i class="icon-envelope"></i></span>
-						<%= f.email_field :email,class: "form-control rounded-right", :validate => true, autofocus: false, :placeholder => "Email Address", value:flash[:email] %>
+						<%= f.email_field :email, class: "form-control rounded-right", autofocus: false, :placeholder => "Email Address", value:flash[:email] %>
 					</div>
 
 					<div class="input-group margin-bottom-20">
 						<span class="input-group-addon rounded-left"><i class="icon-lock"></i></span>
-						<%= f.password_field :password, class: "form-control rounded-right", :validate => true, autocomplete: "off", :placeholder => "Password" %>
+						<%= f.password_field :password, class: "form-control rounded-right", autocomplete: "off", :placeholder => "Password" %>
 					</div>
-
-					<div class="input-group margin-bottom-20">
-						<span class="input-group-addon rounded-left"><i class="icon-lock"></i></span>
-						<%= f.password_field :password_confirmation,class: "form-control rounded-right", :validate => true, autocomplete: "off" , :placeholder => "Confirm Password"%>
-					</div>
-
-
+	
+						<div class="input-group margin-bottom-20">
+							<span class="input-group-addon rounded-left"><i class="icon-lock"></i></span>
+							<%= f.password_field :password_confirmation,class: "form-control rounded-right",:validate => true, autocomplete: "off" , :placeholder => "Confirm Password"%>
+						</div>
+					
 					<div class="checkbox margin-bottom-15">
-						<label>
-							<input type="checkbox">
+						<label class="em-error">
+							<%# <input type="checkbox" name="agreed_terms"> %>
 							<%= f.check_box :agreed_terms, {}, true %>
 							<p>I agree to terms &amp; conditions</p>
 						</label>
 
 						<label>
-							<input type="checkbox">
+							<%# <input type="checkbox" name="agreed_subscribe"> %>
 							<%= f.check_box :agreed_subscribe, {}, true %>
 							<p>Subscribe to our newsletter</p>
 						</label>
 					</div>
-
 					<div class="row">
 						<div class="col-md-12">
 							<%= f.submit "Continue", class: "btn-u btn-block rounded" %>
@@ -1033,7 +1030,6 @@
       </div><!--/copyright-->
   </div>
   <!--=== End Footer v1 ===-->
-
 	<!--=== Style Switcher ===-->
 	<i class="style-switcher-btn fa fa-cogs hidden-xs"></i>
 	<div class="style-switcher animated fadeInRight">
@@ -1108,7 +1104,6 @@
 		</div>
 	</div><!--/style-switcher-->
 	<!--=== End Style Switcher ===-->
-
   	<script>
   		jQuery(document).ready(function() {
   			App.init();
@@ -1125,6 +1120,24 @@
 		        duration: 7000
 		    });
   	</script>
+<!--=== This functiona validates all forms on the page and this was needed as the ===-->	
+<!--=== Logon and Signup forms end up being called the same name when using Devise ===-->
+	<script>
+		jQuery(document).ready(function () {
+			$('form').each(function() {
+			$(this).validate({
+				<%# debug: true, %>
+				rules: {
+				"user[email]": {required: true, email: true},
+				"user[username]": {required: true, minlength: 6},
+				"user[password]": {required: true, minlength: 6},
+				"user[password_confirmation]": {required: true},
+				"user[agreed_terms]": {required: true}
+				}
+				});
+			});
+			});
+	</script>
 
   	<!--[if lt IE 9]>
     <script src="assets/plugins/respond.js"></script>

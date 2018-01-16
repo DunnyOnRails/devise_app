@@ -2571,4 +2571,7 @@ img.img-center,
 		transform: translateY(36px);
 		-webkit-transform: translateY(36px);
 	}
+	[hidden] {
+		display: none !important;
+	  }
 }

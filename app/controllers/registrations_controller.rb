@@ -31,15 +31,21 @@ class RegistrationsController < Devise::RegistrationsController
   if resource.persisted?
     if resource.active_for_authentication?
 # TODO = wrap the creation of the user and the creation of the profile into one?
+      puts "got in here 1"
+      puts "This is the id #{resource.id}"
+
+          @profile = Profile.new
+          @profile.user_id = resource.id
+          @profile.save
+          puts "got in here with errors#{@profile.errors.full_messages}"
+      
       set_flash_message! :notice, :signed_up
       sign_up(resource_name, resource)
       respond_with resource, location: after_sign_up_path_for(resource)
 # DD - setting the session ID in case I need it elsewhere but I think Devise maintains this in current_user.id anyway
       session["user_id"] = resource.id
 # DD - Create an empty profile keyed off user_id - need this to allow profile details to be added later
-    @profile = Profile.new
-    @profile.user_id = resource.id
-    @profile.save
+
     else
       set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
       expire_data_after_sign_in!
@@ -63,16 +69,16 @@ def response_to_sign_up_failure(resource)
   flash[:username] = resource.username
 
 # DD -------------------DEBUG CODE --------------------------------------
-  #params.each do |key,value|
+  # params.each do |key,value|
   #  Rails.logger.warn "Param #{key}: #{value}"
-  #end
+  # end
       ##Obsolete debug code - remove once documented.
       ##@resource_email = resource.email
       ##@resource_password = params[:password]
       ##@resource_password_confirmation = resource.password_confirmation
 
       ##Rails.logger.debug("My EMAIL object: #{@resource_email.inspect}")
-      ##Rails.logger.debug("My PASSWORD object: #{@resource_password.inspect}")
+      #Rails.logger.debug("My PASSWORD object: #{@resource_password.inspect}")
       ##Rails.logger.debug("My CONFIRM_PASSWORD object: #{@resource_password_confirmation.inspect}")
     ##if resource.email == "" && resource.password == nil
 # DD --------------------END DEBUG CODE--------------------------------------
@@ -82,14 +88,21 @@ def response_to_sign_up_failure(resource)
     #render :sign_up // This doesnt work as it injects the standard Devise user sign up page
     #into my sign_up page, therefore I redirect and the parameters from above are captured
     #and put back into the sign_up form
-    redirect_to  open_pages_sign_up_path,render, alert: "Please add your username"
-  elsif resource.email == ""
-      redirect_to  open_pages_sign_up_path, alert: "Please add your email address"
-    #checking for duplicate email address and username (already in the database?)
+    redirect_to  open_pages_sign_up_path, alert: "Please add your username"
+  
   elsif User.pluck(:username).include? resource.username
-      redirect_to  open_pages_sign_up_path, alert: "Username already exists"
+    redirect_to  open_pages_sign_up_path, alert: "Username already exists"
+  elsif resource.email == ""
+        redirect_to  open_pages_sign_up_path, alert: "Please add your email address"
+    #checking for duplicate email address and username (already in the database?)
   elsif User.pluck(:email).include? resource.email
-      redirect_to  open_pages_sign_up_path, alert: "Email already exists"
+        redirect_to  open_pages_sign_up_path, alert: "Email already exists"
+  elsif params[:user][:password].blank?
+        redirect_to  open_pages_sign_up_path, alert: "Password cannot be empty"
+  elsif params[:user][:password_confirmation] != params[:user][:password]
+        redirect_to  open_pages_sign_up_path, alert: "Passwords must match"
+  elsif params[:user][:agreed_terms].to_s != 'true'
+            redirect_to  open_pages_sign_up_path, alert: "Please accept our terms!!"
   end
 end
  end

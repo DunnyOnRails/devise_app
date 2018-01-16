@@ -1,1 +1,16 @@
 /* Add here all your css styles (customizations) */
+
+/*  Using this to style the upload link on the profile settings page*/
+.hidden {
+    display: none !important;
+  }
+
+/*  Using this to style the error messages on the signup page*/
+.em-error{
+    color: red;
+ }
+
+/*  Using this to style the remember me text on the signup page*/
+.remember_me{
+  color: white;
+}

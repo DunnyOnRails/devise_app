@@ -1,7 +1,13 @@
 <!--Left Sidebar-->
 <div class="col-md-3 md-margin-bottom-40">
-  <img class="img-responsive profile-img margin-bottom-20" src="../../assets/team/temp_face.jpg" alt="">
-
+  <% if @profile.avatar.present? %>
+          <%=image_tag @profile.avatar.url(:medium), :class => "img-responsive profile-img margin-bottom-20"%>
+    <%else%>
+          <img class="img-responsive profile-img margin-bottom-20" src="../../assets/user.jpg" alt="">
+    <%end%>
+  
+  <%# <img class="img-responsive profile-img margin-bottom-20" src="../../assets/team/temp_face.jpg" alt=""> %>
+  <%# <%= image_tag @profile.avatar.url(:medium), :class => "img-responsive profile-img margin-bottom-20"%>
   <ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
     <li class="list-group-item active">
       <a href='<%=profiles_profile_summary_path%>'><i class="fa fa-bar-chart-o"></i> Overall</a>

@@ -32,6 +32,8 @@ gem 'devise', '~> 4.3'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
+# gem "paperclip", "~> 4.1.1" - This one didnt work, gave NoMethod Error.Looks like it needed the later version
+gem 'paperclip', github: 'thoughtbot/paperclip'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
