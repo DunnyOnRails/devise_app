@@ -1,76 +1,65 @@
-	<% setBreadcrumb("Testing","sitePage", "Testing Pages","Test it")%>
-	<%= render "/open_pages/shared/header_nav"%>
+		
+        <body>
+					<form class="sky-form" id="sky-form" action="#">
+						<!--Checkout-Form-->
+						<section>
+							<div class="inline-group">
+								<label class="radio"><input type="radio" checked="" name="radio-inline"><i class="rounded-x"></i>Visa</label>
+								<label class="radio"><input type="radio" name="radio-inline"><i class="rounded-x"></i>MasterCard</label>
+								<label class="radio"><input type="radio" name="radio-inline"><i class="rounded-x"></i>PayPal</label>
+							</div>
+						</section>
 
-	<form id="passwordResetForm" style="width: 480px; margin: auto;">
-    <div class="row">
-        <p class="lead">Let's reset that password</p>
-    </div>
-    <div class="row">
-        <div class="small-8 large-4 columns">
-            <label>New Password:</label>
-        </div>
-        <div class="small-12 large-6 columns">
-            <input name="password" id="password" type="password" size="20" />
-        </div>
-    </div>
-    <div class="row">
-        <div class="small-8 large-4 columns">
-            <label>Confirm Password:</label>
-        </div>
-        <div class="small-12 large-6 columns">
-            <input name="confirmPassword" id="confirmPassword" type="password" size="20" />
-        </div>
-    </div>
-    <div class="row">
-        <div class="large-offset-10 small-3 large-1 columns">
-            <input type="submit" id="passwordResetButton" class="small button" />
-        </div>
-    </div>
-</form>
+						<section>
+							<label class="input">
+								<input type="text" name="name" placeholder="Name on card">
+							</label>
+						</section>
 
-<script>
-$(document).ready(function () {
+						<div class="row">
+							<section class="col col-10">
+								<label class="input">
+									<input type="text" name="card" id="card" placeholder="Card number">
+								</label>
+							</section>
+							<section class="col col-2">
+								<label class="input">
+									<input type="text" name="cvv" id="cvv" placeholder="CVV2">
+								</label>
+							</section>
+						</div>
 
-    $("#passwordResetForm").validate({
-        rules: {
-            password: {
-                required: true,
-                minlength: 8,
-                maxlength: 40,
-                // comment out for demo
-                /* 
-                remote: {
-                    url: "/ajax/isPasswordOK",
-                    data: {
-                        product: function () {
-                            return $("#password").val();
-                        }
-                    }
-                }
-                */
-            },
-            confirmPassword: {
-                required: true,
-                equalTo: "#password"
-            },
-        },
-        messages: {
-            password: {
-                required: "Please enter a password",
-                minlength: "Password must be at least {0} characters long",
-                remote: "Password should contain: <li>At least one upper case character <li>At least one lower case character <li>At least one number <li>And may not contain any of the following: \\;-\")(&*='|$"
-            },
-            confirmPassword: {
-                required: "Please confirm your password",
-                equalTo: "The passwords do not match"
-            },
-        },
-        onkeyup: false, //turn off auto validate whilst typing
-        submitHandler: function (form) {
-            alert('is good');
-            return false;
-        }
-    });
-
-});
-</script>
+						<div class="row">
+							<label class="label col col-4">Expiration date</label>
+							<section class="col col-5">
+								<label class="select">
+									<select name="month">
+										<option disabled="" selected="" value="0">Month</option>
+										<option value="1">January</option>
+										<option value="1">February</option>
+										<option value="3">March</option>
+										<option value="4">April</option>
+										<option value="5">May</option>
+										<option value="6">June</option>
+										<option value="7">July</option>
+										<option value="8">August</option>
+										<option value="9">September</option>
+										<option value="10">October</option>
+										<option value="11">November</option>
+										<option value="12">December</option>
+									</select>
+									<i></i>
+								</label>
+							</section>
+							<section class="col col-3">
+								<label class="input">
+									<input type="text" placeholder="Year" id="year" name="year">
+								</label>
+							</section>
+						</div>
+						<a class="btn-u btn-u-default" href="/profiles/">Cancel</a>
+						<button class="btn-u" type="submit">Save Changes</button>
+						<!--End Checkout-Form-->
+					</form>
+				
+    </body>

@@ -16,7 +16,7 @@ var CheckoutForm = function () {
 	                return false;
 	            }
 	        },
-	        $.validator.format('Please enter a valid credit card numberzzzz.'));
+	        $.validator.format('Please enter a valid credit card number.'));
 
 	        // Validation
 	        $('#sky-form').validate({

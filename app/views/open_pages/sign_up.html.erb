@@ -809,17 +809,17 @@
 				<!--login Block-->
 				<%= form_for(resource, as: resource_name, url: session_path(resource_name))do |f| %>
 				<%# <%= devise_error_messages! %> 
-				<div class="form-block login-block em-error col-md-6 col-sm-12 rounded-left equal-height-column">
+				<div class="form-block login-block em-sign-up-error col-md-6 col-sm-12 rounded-left equal-height-column">
 					<div class="form-block-header">
 						<h2 class="margin-bottom-15">Sign In</h2>
 					</div>
 
-					<div class="input-group  margin-bottom-20">
+					<div class="input-group  margin-bottom-20" id="loginuname">
 						<span class="input-group-addon rounded-left"><i class="icon-user color-white"></i></span>
 						<%= f.email_field :email, class: "form-control rounded-right", :placeholder => "Email Address" %>
 					</div>
 
-					<div class="input-group margin-bottom-20">
+					<div class="input-group margin-bottom-20" id="loginpwd">
 						<span class="input-group-addon rounded-left"><i class="icon-lock color-white"></i></span>
 						 <%= f.password_field :password, class: "form-control rounded-right", :placeholder => "Password" %>
 					</div>
@@ -858,21 +858,23 @@
 				<!--Reg Block-->
 				<%= form_for(resource, as: resource_name, url: registration_path(resource_name),  html: {class: 'form-horizontal'}) do |f| %>
 				 <%= devise_error_messages! %>
-				<div class="form-block reg-block em-error col-md-6 col-sm-12 rounded-right equal-height-column">
-					<div class="form-block-header">
+				<div class="form-block reg-block em-sign-up-error col-md-6 col-sm-12 rounded-right equal-height-column">
+					<div class="form-block-header" >
 						<h2 class="margin-bottom-10">Sign Up</h2>
-						<p class="margin-bottom-20">Lorem ipsum dolor sit amet, conur sicing elit, seddoet dolore magna. aliqua.</p>
+						<p id="header"class="margin-bottom-20">Lorem ipsum dolor sit amet, conur sicing elit, seddoet dolore magna. aliqua.</p>
 					</div>
-					<div class="input-group margin-bottom-20">
+					<div class="input-group margin-bottom-20" id="uname">
 						<span class="input-group-addon rounded-left"><i class="icon-user"></i></span>
 						<%= f.text_field :username, class: "form-control rounded-right", autofocus: false, :placeholder => "Username", value:flash[:username] %>
+					
 					</div>
-					<div class="input-group margin-bottom-20">
+					
+					<div class="input-group margin-bottom-20" id="email">
 						<span class="input-group-addon rounded-left"><i class="icon-envelope"></i></span>
 						<%= f.email_field :email, class: "form-control rounded-right", autofocus: false, :placeholder => "Email Address", value:flash[:email] %>
 					</div>
 
-					<div class="input-group margin-bottom-20">
+					<div class="input-group margin-bottom-20" id="pwd">
 						<span class="input-group-addon rounded-left"><i class="icon-lock"></i></span>
 						<%= f.password_field :password, class: "form-control rounded-right", autocomplete: "off", :placeholder => "Password" %>
 					</div>
@@ -883,7 +885,7 @@
 						</div>
 					
 					<div class="checkbox margin-bottom-15">
-						<label class="em-error">
+						<label class="em-sign-up-error">
 							<%# <input type="checkbox" name="agreed_terms"> %>
 							<%= f.check_box :agreed_terms, {}, true %>
 							<p>I agree to terms &amp; conditions</p>
@@ -1120,23 +1122,42 @@
 		        duration: 7000
 		    });
   	</script>
-<!--=== This functiona validates all forms on the page and this was needed as the ===-->	
+<!--=== This function validates all forms on the page and this was needed as the ===-->	
 <!--=== Logon and Signup forms end up being called the same name when using Devise ===-->
 	<script>
-		jQuery(document).ready(function () {
-			$('form').each(function() {
-			$(this).validate({
-				<%# debug: true, %>
-				rules: {
-				"user[email]": {required: true, email: true},
-				"user[username]": {required: true, minlength: 6},
-				"user[password]": {required: true, minlength: 6},
-				"user[password_confirmation]": {required: true},
-				"user[agreed_terms]": {required: true}
-				}
-				});
-			});
-			});
+
+jQuery(document).ready(function () {
+    $('form').each(function() {
+    $(this).validate({
+        rules: {
+            "user[email]": {required: true, email: true},
+            "user[username]": {required: true, minlength: 4},
+            "user[password]": {required: true, minlength: 6},
+            "user[password_confirmation]": {required: true, minlength: 6},
+            "user[agreed_terms]": {required: true}
+        },
+            errorPlacement: function(error, element) {
+            error.insertBefore(element.parent());               
+        },
+		highlight: function(element) {
+			
+	    $(element).parent().prev('div').removeClass("margin-bottom-20"); 
+		$('#header').removeClass("margin-bottom-20"); 
+
+		
+		},
+		unhighlight: function(element) {
+	    $('#uname').addClass("margin-bottom-20"); 
+	    $('#email').addClass("margin-bottom-20"); 
+		$('#pwd').addClass("margin-bottom-20"); 
+		$('#header').addClass("margin-bottom-20"); 
+
+		$('#loginuname').addClass("margin-bottom-20"); 
+
+  }     
+    });     
+    });
+    })
 	</script>
 
   	<!--[if lt IE 9]>

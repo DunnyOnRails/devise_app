@@ -8,14 +8,16 @@ module ApplicationHelper
   end
 
   # helper_method :resource_name, :resource, :devise_mapping, :resource_class
-# Put this in to try and get client side validations working so might be able to remove later
-  def resource_name
+
+   # DD - these helper methods are required so we can use bespoke signin / signup forms rather than Devise views
+   # I think these helper methods will be needed in each controller involved in a signup and redirect
+    def resource_name
     :user
   end
 
-  def resource_name2
-    :user
-  end
+  # def resource_name2
+  #   :user
+  # end
  
   def resource
     @resource ||= User.new

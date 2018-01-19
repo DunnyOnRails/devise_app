@@ -6,9 +6,22 @@
   }
 
 /*  Using this to style the error messages on the signup page*/
-.em-error{
+.em-sign-up-error{
     color: red;
+    font-weight: 300;
+    font-size: 14px;
  }
+
+ .em-form-error{
+  display: block;
+  margin-top: 6px;
+  padding: 0 1px;
+  font-style: normal;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 15px;
+  color: #ee9393; !important
+}
 
 /*  Using this to style the remember me text on the signup page*/
 .remember_me{

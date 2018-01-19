@@ -31,11 +31,11 @@
         },
         password: {
           required: "Please provide a password",
-          minlength: "Your password must be at least 5 characters long"
+          minlength: "Your password must be at least 6 characters long"
         },
         password_confirmation: {
           required: "Please provide a password",
-          minlength: "Your password must be at least 5 characters long",
+          minlength: "Your password must be at least 6 characters long",
           equalTo: "Please enter the same password as above"
         },
         email: "Please enter a valid email address",
@@ -44,19 +44,31 @@
       errorElement: "em",
       errorPlacement: function ( error, element ) {
         // Add the `help-block` class to the error element
-        error.addClass( "help-block" );
+        // element.parent("label").addClass("state-error")
 
         if ( element.prop( "type" ) === "checkbox" ) {
           error.insertAfter( element.parent( "label" ) );
+          error.addClass( "em-form-error" );
+
         } else {
           error.insertAfter( element );
         }
       },
       highlight: function ( element, errorClass, validClass ) {
-        $( element ).parents( ".col-sm-5" ).addClass( "has-error" ).removeClass( "has-success" );
+        // $( element ).parents( ".col-sm-5" ).addClass( "em-form-error" ).removeClass( "has-success" );
+        $( element ).parent("label").addClass("state-error")
+        $( element ).parent ("em").addClass('em-form-error')
+        $( element ).siblings('em').addClass( "em-form-error" );
+
+        // error.addClass( "em-form-error" );
+
       },
       unhighlight: function (element, errorClass, validClass) {
-        $( element ).parents( ".col-sm-5" ).addClass( "has-success" ).removeClass( "has-error" );
+        // $( element ).parents( ".col-sm-5" ).addClass( "has-success" ).removeClass( "em-form-error" );
+        $( element ).parent("label").removeClass("state-error")
+        // error.removeClass( "em-form-error" );
+
+
       }
     } );
 

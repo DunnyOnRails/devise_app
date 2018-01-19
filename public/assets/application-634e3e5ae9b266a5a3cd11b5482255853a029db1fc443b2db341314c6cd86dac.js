@@ -14393,7 +14393,7 @@ var CheckoutForm = function () {
 	                },
 	                card:
 	                {
-	                    required: 'Please enter your card number'
+	                    required: 'Please enter your card numberZZZ'
 	                },
 	                cvv:
 	                {
