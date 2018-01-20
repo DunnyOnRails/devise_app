@@ -64,11 +64,11 @@ class ConversationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_conversation
-      @conversation = Conversation.find(params[:id])
+      @conversation = Conversation.friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def conversation_params
-      params.require(:conversation).permit(:title, :content, :locked, :subject_id, :user_id)
+      params.require(:conversation).permit(:title, :content, :locked, :subject_id, :user_id, :slug)
     end
 end
