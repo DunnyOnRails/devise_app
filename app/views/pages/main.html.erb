@@ -1,8 +1,129 @@
-<%if user_signed_in?%>
-    <%= render "pages/shared/header_nav"%>
-    <h2> Content Goes Here</h2>
-    <%= render "pages/shared/footer"%>
-    <%= render "pages/shared/style_switcher"%>
-<%else%>
-    <%controller.redirect_to open_pages_sign_up_path%>
-<% end %>
+<%=render '/profiles/shared/header_nav'%>
+			<!--=== Profile ===-->
+		<div class="container content profile">
+			<div class="row">
+				<!-- Group Content / Profile Style-->
+				<div class="col-md-12">
+					<div class="profile-body">
+						<div class="row margin-bottom-20">
+							<!--Group Post-->
+							<div class="col-sm-6">
+								<div class="panel panel-profile no-bg">
+									<div class="panel-heading overflow-h">
+										<h2 class="panel-title heading-sm pull-left"><i class="fa fa-pencil"></i>Group Notices</h2>
+										<a href="#"><i class="fa fa-cog pull-right"></i></a>
+									</div>
+									<div id="scrollbar" class="panel-body no-padding mCustomScrollbar" data-mcs-theme="minimal-dark">
+                                            <%counter ||= 0%> 
+                                            <% @notice.each do |notice| %>
+                                            <%counter = counter + 1%>
+                                        <div class="profile-post color-one">
+											<span class="profile-post-numb"><%=sprintf '%02d', counter%></span>
+											<div class="profile-post-in">   
+												<h3 class="heading-xs"><a href="#"><%=notice.title%></a></h3>
+												<p><%=notice.content[0..70  ].gsub(/\s\w+\s*$/,'...')%></p>
+											</div>
+										</div>
+                                            <% end %>                                    
+									</div>
+								</div>
+							</div>
+							<!--End Profile Post-->
+
+							<!--Profile Event-->
+							<div class="col-sm-6 md-margin-bottom-20">
+								<div class="panel panel-profile no-bg">
+									<div class="panel-heading overflow-h">
+										<h2 class="panel-title heading-sm pull-left"><i class="fa fa-briefcase"></i>Upcoming Events</h2>
+										<a href="#"><i class="fa fa-cog pull-right"></i></a>
+									</div>
+									<div id="scrollbar2" class="panel-body no-padding mCustomScrollbar" data-mcs-theme="minimal-dark">
+										<div class="profile-event">
+											<div class="date-formats">
+												<span>25</span>
+												<small>05, 2014</small>
+											</div>
+											<div class="overflow-h">
+												<h3 class="heading-xs"><a href="#">GitHub seminars in Japan.</a></h3>
+												<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry printing.</p>
+											</div>
+										</div>
+										<div class="profile-event">
+											<div class="date-formats">
+												<span>31</span>
+												<small>06, 2014</small>
+											</div>
+											<div class="overflow-h">
+												<h3 class="heading-xs"><a href="#">Bootstrap Update</a></h3>
+												<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry printing.</p>
+											</div>
+										</div>
+										<div class="profile-event">
+											<div class="date-formats">
+												<span>07</span>
+												<small>08, 2014</small>
+											</div>
+											<div class="overflow-h">
+												<h3 class="heading-xs"><a href="#">Apple Conference</a></h3>
+												<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry printing.</p>
+											</div>
+										</div>
+										<div class="profile-event">
+											<div class="date-formats">
+												<span>22</span>
+												<small>10, 2014</small>
+											</div>
+											<div class="overflow-h">
+												<h3 class="heading-xs"><a href="#">Backend Meeting</a></h3>
+												<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry printing.</p>
+											</div>
+										</div>
+										<div class="profile-event">
+											<div class="date-formats">
+												<span>14</span>
+												<small>11, 2014</small>
+											</div>
+											<div class="overflow-h">
+												<h3 class="heading-xs"><a href="#">Google Conference</a></h3>
+												<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry printing.</p>
+											</div>
+										</div>
+										<div class="profile-event">
+											<div class="date-formats">
+												<span>05</span>
+												<small>12, 2014</small>
+											</div>
+											<div class="overflow-h">
+												<h3 class="heading-xs"><a href="#">FontAwesome Update</a></h3>
+												<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry printing.</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!--End Profile Event-->
+						</div><!--/end row-->
+						</div>
+				</div>
+				<!-- End Profile Content -->
+			</div>
+		</div><!--/container-->
+		<!--=== End Profile ===-->
+
+	<%= render'/pages/shared/style_switcher'%>
+
+	<script type="text/javascript">
+		jQuery(document).ready(function() {
+			App.init();
+			App.initCounter();
+			App.initScrollBar();
+			Datepicker.initDatepicker();
+			StyleSwitcher.initStyleSwitcher();
+		});
+	</script>
+	<!--[if lt IE 9]>
+	<script src="assets/plugins/respond.js"></script>
+	<script src="assets/plugins/html5shiv.js"></script>
+	<script src="assets/plugins/placeholder-IE-fixes.js"></script>
+	<![endif]-->
+	<%= render 'profiles/shared/footer'%>

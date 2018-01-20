@@ -5,6 +5,7 @@ before_action :authenticate_user!
   def index
   end
   def main
+    @notice = Notice.all
   end
   # DD - these helper methods are required so we can use bespoke signin / signup forms rather than Devise views
   # I think these helper methods will be needed in each controller involved in a signup and redirect
