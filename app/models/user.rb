@@ -20,4 +20,6 @@ class User < ApplicationRecord
     #   :length => {:within => 6..40}
 
   has_one :profile
+  has_many :conversations
+  has_many :posts
 end

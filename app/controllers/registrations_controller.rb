@@ -37,7 +37,12 @@ class RegistrationsController < Devise::RegistrationsController
           @profile = Profile.new
           @profile.user_id = resource.id
           @profile.save
-          puts "got in here with errors#{@profile.errors.full_messages}"
+          puts "got in here with profile errors#{@profile.errors.full_messages}"
+
+          @notification = Notification.new
+          @notification.user_id = resource.id
+          @notification.save
+          puts "got in here with notification errors#{@notification.errors.full_messages}"
       
       set_flash_message! :notice, :signed_up
       sign_up(resource_name, resource)

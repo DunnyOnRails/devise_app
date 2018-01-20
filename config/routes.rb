@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :posts
+  resources :conversations
+  resources :subjects
+  resources :boards
   get 'pages/index'
   root 'pages#index'
   get 'pages/main'
