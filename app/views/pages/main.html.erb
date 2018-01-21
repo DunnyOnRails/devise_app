@@ -58,8 +58,8 @@
 										 <% @event.each do |event |%>
                                         <div class="profile-event">
 											<div class="date-formats">
-												<span><%=event.date%></span>
-												<small>05, 2014</small>
+												<span><%= sprintf '%02d', event.date.wday%></span>
+												<small><%=sprintf '%02d', event.date.month%>, <%= event.date.year%></small>
 											</div>
 											<div class="overflow-h">
                                                 <h3 class="heading-xs"><a href="#" role="button" class="heading-xs" data-toggle="modal" data-target=".<%=event.title.gsub(' ', '-')%>"><%=event.title%></a></h3>
