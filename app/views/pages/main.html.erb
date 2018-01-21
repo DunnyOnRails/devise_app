@@ -20,29 +20,27 @@
                                         <div class="profile-post color-one">
 											<span class="profile-post-numb"><%=sprintf '%02d', counter%></span>
 											<div class="profile-post-in">   
-												<%# <h3 class="heading-xs"><a href="#"><%=notice.title%></a></h3>
     						                    <h3 class="heading-xs"><a href="#" role="button" class="heading-xs" data-toggle="modal" data-target=".<%=notice.title.gsub(' ', '-')%>"><%=notice.title%></a></h3>
 												<p><%=notice.content[0..70  ].gsub(/\s\w+\s*$/,'...')%></p>
 											</div>
 										</div>
-
-                    <div>
-							<!-- Large modal -->
-							<div class="modal fade <%=notice.title.gsub(' ', '-')%>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-								<div class="modal-dialog modal-lg">
-									<div class="modal-content">
-										<div class="modal-header">
-											<button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
-											<h4 id="myLargeModalLabel2" class="modal-title"><%=notice.title%></h4>
-										</div>
-										<div class="modal-body">
-											<p><%=notice.content%></p>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- Large modal -->
-					</div>
+                                        <div>
+                                                <!-- Large modal -->
+                                                <div class="modal fade <%=notice.title.gsub(' ', '-')%>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-lg">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                                                                <h4 id="myLargeModalLabel2" class="modal-title"><%=notice.title%></h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <p><%=notice.content%></p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Large modal -->
+                                        </div>
                                             <% end %>                                    
 									</div>
 								</div>
@@ -64,12 +62,29 @@
 												<small>05, 2014</small>
 											</div>
 											<div class="overflow-h">
-												<h3 class="heading-xs"><a href="#"><%=event.title%></a></h3>
+                                                <h3 class="heading-xs"><a href="#" role="button" class="heading-xs" data-toggle="modal" data-target=".<%=event.title.gsub(' ', '-')%>"><%=event.title%></a></h3>
 												<p><%=event.content%></p>
 											</div>
 										</div>
-                                         <% end%><br>
-										
+
+                                        <div>
+                                                <!-- Large modal -->
+                                                <div class="modal fade <%=event.title.gsub(' ', '-')%>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-lg">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                                                                <h4 id="myLargeModalLabel2" class="modal-title"><%=event.title%></h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <p><%=event.content%></p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Large modal -->
+                                        </div>
+                                         <% end%><br>							
 									</div>
 								</div>
 							</div>
