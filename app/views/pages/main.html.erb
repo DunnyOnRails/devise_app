@@ -1,4 +1,4 @@
-<%=render '/profiles/shared/header_nav'%>
+<%=render '/pages/shared/header_nav'%>
 			<!--=== Profile ===-->
 		<div class="container content profile">
 			<div class="row">
@@ -63,7 +63,7 @@
 											</div>
 											<div class="overflow-h">
                                                 <h3 class="heading-xs"><a href="#" role="button" class="heading-xs" data-toggle="modal" data-target=".<%=event.title.gsub(' ', '-')%>"><%=event.title%></a></h3>
-												<p><%=event.content%></p>
+                                                <p><%=event.content[0..70  ].gsub(/\s\w+\s*$/,'...')%></p>
 											</div>
 										</div>
 

@@ -5,7 +5,7 @@ before_action :authenticate_user!
   def index
   end
   def main
-    @notice = Notice.where("visible = true")
+    @notice = Notice.where("visible = true").order("created_at")
     @event = Event.where("visible = true").order("date")
   end
   # DD - these helper methods are required so we can use bespoke signin / signup forms rather than Devise views
