@@ -3,15 +3,14 @@ RailsAdmin.config do |config|
       exclude_fields :posts_count, :topics_count, :slug, :subject
     end
 
+  config.authenticate_with do
+    if  warden.user
+      redirect_to main_app.pages_main_path unless warden.user.administrator == true 
+    else
+      redirect_to main_app.pages_main_path
+    end
+  end
 
-  
-  
-  ### Popular gems integration
-
-  ## == Devise ==
-  # config.authenticate_with do
-  #   warden.authenticate! scope: :user
-  # end
   # config.current_user_method(&:current_user)
 
   ## == Cancan ==
