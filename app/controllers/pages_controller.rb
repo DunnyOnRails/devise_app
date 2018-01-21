@@ -5,8 +5,8 @@ before_action :authenticate_user!
   def index
   end
   def main
-    @notice = Notice.all
-    @event = Event.all.order("date")
+    @notice = Notice.where("visible = true")
+    @event = Event.where("visible = true").order("date")
   end
   # DD - these helper methods are required so we can use bespoke signin / signup forms rather than Devise views
   # I think these helper methods will be needed in each controller involved in a signup and redirect
