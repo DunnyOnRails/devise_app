@@ -11,8 +11,10 @@
 								<div class="panel panel-profile no-bg">
 									<div class="panel-heading overflow-h">
 										<h2 class="panel-title heading-sm pull-left"><i class="fa fa-pencil"></i>Group Notices</h2>
-										<a href="#"><i class="fa fa-cog pull-right"></i></a>
-									</div>
+                                     <%if @user.administrator%>                                       
+                                        <%= link_to '<i class="fa fa-cog pull-right"></i>'.html_safe, rails_admin.index_path('notice') %>
+                                    <% end %>
+                                    </div>
 									<div id="scrollbar" class="panel-body no-padding mCustomScrollbar" data-mcs-theme="minimal-dark">
                                             <%counter ||= 0%> 
                                             <% @notice.each do |notice| %>
@@ -52,8 +54,10 @@
 								<div class="panel panel-profile no-bg">
 									<div class="panel-heading overflow-h">
 										<h2 class="panel-title heading-sm pull-left"><i class="fa fa-briefcase"></i>Upcoming Events</h2>
-										<a href="#"><i class="fa fa-cog pull-right"></i></a>
-									</div>
+                                    <%if @user.administrator%>
+                                        <%= link_to '<i class="fa fa-cog pull-right"></i>'.html_safe, rails_admin.index_path('event') %>
+		                            <% end %>							                                    
+                                    </div>
 									<div id="scrollbar2" class="panel-body no-padding mCustomScrollbar" data-mcs-theme="minimal-dark">
 										 <% @event.each do |event |%>
                                         <div class="profile-event">

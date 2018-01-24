@@ -10,8 +10,10 @@
       <!-- Topbar -->
       <div class="topbar">
         <ul class="loginbar pull-right">
+        <%if @user.administrator%>
           <li><%= link_to "Admin", rails_admin_path%></li>
           <li class="topbar-devider"></li>
+        <% end %>
           <li><a href="/profiles/profile_summary  "><%= current_user.username %></a></li>
           <li class="topbar-devider"></li>
           <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>

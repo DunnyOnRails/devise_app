@@ -48,7 +48,10 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'client_side_validations'
 gem 'friendly_id', '~> 5.2', '>= 5.2.3'
-gem 'rails_admin', '~> 1.2'
+# gem 'rails_admin', '~> 1.2'
+gem 'rails_admin_rollincode', '~> 1.0'
+gem 'rails_admin', git: 'https://github.com/sferik/rails_admin.git'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

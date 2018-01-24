@@ -7,6 +7,7 @@ before_action :authenticate_user!
   def main
     @notice = Notice.where("visible = true").order("created_at")
     @event = Event.where("visible = true").order("date")
+    @user = current_user
   end
   # DD - these helper methods are required so we can use bespoke signin / signup forms rather than Devise views
   # I think these helper methods will be needed in each controller involved in a signup and redirect
