@@ -5,7 +5,7 @@ before_action :authenticate_user!
   def index
   end
   def main
-    @notice = Notice.where("visible = true").order("created_at")
+    @notice = Notice.where("visible = true").order("created_at DESC")
     @event = Event.where("visible = true").order("date")
     @user = current_user
   end

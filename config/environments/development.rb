@@ -54,4 +54,7 @@ Rails.application.configure do
   
   # added to enable paperclip for uploading image files
   Paperclip.options[:command_path] = "/usr/bin/"
+
+  #ADDED BY ME TO TRY AND SEE WHY THE CSS ISNT LOADING
+  config.assets.unknown_asset_fallback = false
 end

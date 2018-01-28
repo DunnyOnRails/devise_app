@@ -17,3 +17,13 @@ module DeviseApp
     config.autoload_paths += %W(#{config.root}/lib)
   end
 end
+
+Rails.application.config.assets.enabled = true
+Rails.application.config.assets.paths << Rails.root.join("app", "assets", "css", "headers")
+Rails.application.config.assets.paths << Rails.root.join("app", "assets", "css", "footers")
+Rails.application.config.assets.paths << Rails.root.join("app", "assets", "plugins" "bootstrap", "css")
+
+
+
+
+# config.assets.paths << Rails.root.join("app", "assets", "plugins", "bootstrap","js")

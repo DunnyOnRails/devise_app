@@ -5,7 +5,7 @@
     display: none !important;
   }
 
-/*  Using this to style the error messages on the signup page*/
+ /*Using this to style the error messages on the signup page*/
 .em-sign-up-error{
     color: red;
     font-weight: 300;
@@ -25,5 +25,19 @@
 
 /*  Using this to style the remember me text on the signup page*/
 .remember_me{
+  color: white;
+}
+
+/* Login form - needed to add this to cope with Chrome resetting the field colours due to autofill*/
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: white;
+}
+
+.fix-padding-login-and-reg-form{
+  padding: 55px 75px!important;
   color: white;
 }

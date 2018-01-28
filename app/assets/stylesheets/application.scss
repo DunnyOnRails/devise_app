@@ -1,35 +1,38 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- // DD - need to check how to get the CSS properly loading in here since I am currently calling the CSS from
- // within application.html. Had issues with paths and the CSS not loading properly
- *= require_tree .
- *= require_self
- *= require bootstrap/css/bootstrap
- *= require style
- *= require headers/header-v6
- *= require footers/footer-v1
- *= require animate.css
- *= require line-icons/line-icons
- *= require font-awesome/css/font-awesome
- *= require brand-buttons/brand-buttons-inversed
- *= require theme-colors/default
- *= require theme-skins/dark
- *= require pages/page_log_reg_v3
- *= require cube-portfolio/cubeportfolio/css/cubeportfolio.min.css
- *= require ladda
- *= require ladda-themed
- */
-
+ //@import "style.css";
  @import "bootstrap-sprockets";
  @import "bootstrap";
+
  @import "font-awesome-sprockets";
  @import "font-awesome";
+
+ //<!-- CSS Global Compulsory -->
+ @import "../assets/bootstrap/css/bootstrap.min.css";
+
+ //<!-- CSS Header and Footer -->
+ @import "../assets/headers/header-v6.css";
+ @import "../assets/headers/header-default.css";
+ @import "../assets/footers/footer-v1.css";
+
+ //<!-- CSS Implementing Plugins -->
+ @import "../assets/animate.css";
+ @import "../assets/line-icons/line-icons.css";
+ @import "../assets/font-awesome/css/font-awesome.min.css";
+ @import "../assets/brand-buttons/brand-buttons-inversed.css";
+ @import "../assets/scrollbar/css/jquery.mCustomScrollbar.css";
+ @import "../assets/sky-forms-pro/skyforms/css/sky-forms.css";
+ @import "../assets/sky-forms-pro/skyforms/custom/custom-sky-forms.css";
+
+ // <!-- CSS Theme -->
+ @import "../assets/theme-colors/default.css";
+ @import "../assets/theme-skins/dark.css";
+
+// <!-- CSS Page Style -->
+ @import "../assets/pages/page_log_reg_v3.css";
+ @import "../assets/pages/profile.css";
+ @import "../assets/pages/shortcode_timeline2.css";
+
+  //<!-- CSS Customization -->
+ @import "../assets/custom.css";
+ //@import "style.css";
+
+

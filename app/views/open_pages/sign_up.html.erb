@@ -808,15 +808,15 @@
 			<div class="row space-xlg-hor equal-height-columns">
 				<!--login Block-->
 				<%= form_for(resource, as: resource_name, url: session_path(resource_name))do |f| %>
-				<%# <%= devise_error_messages! %> 
-				<div class="form-block login-block em-sign-up-error col-md-6 col-sm-12 rounded-left equal-height-column">
+				<%= devise_error_messages! %> 
+				<div class="form-block login-block fix-padding-login-and-reg-form em-sign-up-error col-md-6 col-sm-12 rounded-left equal-height-column">
 					<div class="form-block-header">
 						<h2 class="margin-bottom-15">Sign In</h2>
 					</div>
 
-					<div class="input-group  margin-bottom-20" id="loginuname">
+					<div class="input-group margin-bottom-20" id="loginuname">
 						<span class="input-group-addon rounded-left"><i class="icon-user color-white"></i></span>
-						<%= f.email_field :email, class: "form-control rounded-right", :placeholder => "Email Address" %>
+						<%= f.email_field :email, class: "form-control rounded-right", :placeholder => "Email Address"%>
 					</div>
 
 					<div class="input-group margin-bottom-20" id="loginpwd">
@@ -856,9 +856,9 @@
 				<% end %>
 				<!--End login Block-->
 				<!--Reg Block-->
-				<%= form_for(resource, as: resource_name, url: registration_path(resource_name),  html: {class: 'form-horizontal'}) do |f| %>
-				 <%= devise_error_messages! %>
-				<div class="form-block reg-block em-sign-up-error col-md-6 col-sm-12 rounded-right equal-height-column">
+				<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+				<!--<%= devise_error_messages! %>-->
+				<div class="form-block reg-block fix-padding-login-and-reg-form em-sign-up-error col-md-6 col-sm-12 rounded-right equal-height-column">
 					<div class="form-block-header" >
 						<h2 class="margin-bottom-10">Sign Up</h2>
 						<p id="header"class="margin-bottom-20">Lorem ipsum dolor sit amet, conur sicing elit, seddoet dolore magna. aliqua.</p>
@@ -1137,12 +1137,14 @@ jQuery(document).ready(function () {
             "user[agreed_terms]": {required: true}
         },
             errorPlacement: function(error, element) {
-            error.insertBefore(element.parent());               
+            error.insertBefore(element.parent());
+			error.addClass("em-sign-up-error");               
         },
 		highlight: function(element) {
 			
 	    $(element).parent().prev('div').removeClass("margin-bottom-20"); 
 		$('#header').removeClass("margin-bottom-20"); 
+		
 
 		
 		},

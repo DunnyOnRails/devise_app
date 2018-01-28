@@ -1,6 +1,8 @@
 @import url(https://fonts.googleapis.com/css?family=Raleway:400,700);
+
+// The variables below should be called from variables.scss but this was failing 
+// so I moved them inot this file and the made the styling mods I wanted.
 $primary: #25393C;
-// $secondary: #6AC035;
 $secondary: #707983;
 $black: #1a1a1a;
 $background: #E9F0F5;
@@ -223,6 +225,7 @@ a.navbar-brand {
   color: #fff !important;
   cursor: pointer !important;
   background: darken($secondary, 10%) !important;
+  //display: none !important; //get rid of the text in the navbar
 
   &:hover {
     background: darken($secondary, 10%) !important;
@@ -303,16 +306,21 @@ a.navbar-brand {
     color: #EEE;
 
     &:hover {
-      color: $secondary !important;
+    //   color: $secondary !important;
+    background: #000;
+    color: #EEE !important;
     }
   }
 
   li.active a {
-    background: darken($primary, 10%);
-    color: $secondary !important;
+    // background: darken($primary, 10%);
+    background: #EEE;
+    color: #000 !important;
+    // color: $secondary !important;
 
     &:hover {
-      color: $secondary !important;
+    //   color: $secondary !important;
+    color: #000!important;
     }
   }
 }
@@ -538,3 +546,11 @@ td.carrierwave_type .img-thumbnail {
 .modal-header-title {
   margin-top: 0;
 }
+
+// this was placed in here to try and overwrite the standard text with an image
+// .navbar-inner {
+//     background-image: image_url('logo.png');
+//     background-size: auto $navbar-height; // put your own sizes here
+//     background-repeat: no-repeat;
+//   }
+  
